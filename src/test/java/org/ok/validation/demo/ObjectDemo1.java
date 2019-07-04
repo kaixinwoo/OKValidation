@@ -98,15 +98,6 @@ public class ObjectDemo1 {
             put("张三", "张三");
             put("李四", "李四");
         }};
-
-//        try {
-//            OKObjectValidationBuilder.builder()
-//                    .notEmpty(null, "9999", "必须得有电脑", computers)
-//                    .validation();
-//            System.out.println(" == 验证通过 == ");
-//        } catch (OKValidationException e) {
-//            System.out.println("code:" + e.getErrCode() + " msg:" + e.getErrMsg());
-//        }
         try {
             OKObjectValidationBuilder.builder()
                     .input(friends)
