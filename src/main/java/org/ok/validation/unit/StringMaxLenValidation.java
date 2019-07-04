@@ -6,11 +6,11 @@ import java.lang.reflect.InvocationTargetException;
 
 public class StringMaxLenValidation extends DefaultValidation {
 
-    int maxLen;
+    protected int compareValue;
 
-    public StringMaxLenValidation(String fieldName, String errCode, String errMsg, Object input, int maxLen) {
+    public StringMaxLenValidation(String fieldName, String errCode, String errMsg, Object input, int compareValue) {
         super(fieldName, errCode, errMsg, input);
-        this.maxLen = maxLen;
+        this.compareValue = compareValue;
     }
 
     @Override
@@ -18,7 +18,7 @@ public class StringMaxLenValidation extends DefaultValidation {
         Object value = super.notEmpty();
         if (value instanceof CharSequence) {
             CharSequence cs = (CharSequence) value;
-            if (cs.length() > maxLen) {
+            if (cs.length() > compareValue) {
                 validationFail();
             }
         } else {

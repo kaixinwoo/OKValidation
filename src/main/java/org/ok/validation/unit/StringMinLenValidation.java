@@ -6,11 +6,11 @@ import java.lang.reflect.InvocationTargetException;
 
 public class StringMinLenValidation extends DefaultValidation {
 
-    int minLen;
+    protected int compareValue;
 
-    public StringMinLenValidation(String fieldName, String errCode, String errMsg, Object input, int minLen) {
+    public StringMinLenValidation(String fieldName, String errCode, String errMsg, Object input, int compareValue) {
         super(fieldName, errCode, errMsg, input);
-        this.minLen = minLen;
+        this.compareValue = compareValue;
     }
 
     @Override
@@ -18,7 +18,7 @@ public class StringMinLenValidation extends DefaultValidation {
         Object value = super.notEmpty();
         if (value instanceof CharSequence) {
             CharSequence cs = (CharSequence) value;
-            if (cs.length() < minLen) {
+            if (cs.length() < compareValue) {
                 validationFail();
             }
         } else {

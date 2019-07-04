@@ -4,7 +4,6 @@ import org.ok.validation.OKValidation;
 import org.ok.validation.exception.OKValidationException;
 import org.ok.validation.util.OKObjectUtil;
 
-import javax.xml.bind.ValidationException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;

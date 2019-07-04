@@ -4,6 +4,10 @@ import org.ok.validation.exception.OKValidationException;
 
 import java.lang.reflect.InvocationTargetException;
 
+/**
+ * 等值验证，
+ * 要求输入项的值和equalValue进行比较，如果有值相等验证通过，否则验证失败
+ */
 public class EqualValidation extends DefaultValidation  {
 
     Object[] equalValue;

@@ -9,9 +9,9 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public abstract class NumberValidation extends DefaultValidation {
 
-    Number min;
+    protected Number min;
 
-    Number max;
+    protected Number max;
 
     public NumberValidation(String fieldName, String errCode, String errMsg, Object input, Number min, Number max) {
         super(fieldName, errCode, errMsg, input);
