@@ -1,6 +1,17 @@
 # OKValidation
 
 简单验证框架
+```
+开发环境 jdk1.8 
+依赖包：lombok 1.16.20
+作者邮箱：7325356@qq.com 欢迎骚扰
+maven:
+<dependency>
+	<groupId>org.okvalidation</groupId>
+	<artifactId>okvalidation</artifactId>
+	<version>1.0.0</version>
+<dependency>
+```
 ``` 
 
     public static void main(String[] args) {
