@@ -5,11 +5,11 @@ import org.ok.validation.exception.OKValidationException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.regex.Pattern;
 
-public class RegularExpressionValidation extends DefaultValidation {
+public class StringRegexValidation extends DefaultValidation {
 
     String regex;
 
-    public RegularExpressionValidation(String fieldName, String errCode, String errMsg, Object input, String regex) {
+    public StringRegexValidation(String fieldName, String errCode, String errMsg, Object input, String regex) {
         super(fieldName, errCode, errMsg, input);
         if (regex == null) {
             throw new NullPointerException("无效的正则表达式 fieldName:" + fieldName + " errCode:" + errCode + " errMsg:" + errMsg);

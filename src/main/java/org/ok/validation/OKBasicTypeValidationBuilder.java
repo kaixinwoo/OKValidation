@@ -102,14 +102,14 @@ public class OKBasicTypeValidationBuilder {
         }
     }
 
-    public OKBasicTypeValidationBuilder stringRegularExpression(String errMsg, Object input, String regex) throws OKValidationException {
-        return this.stringRegularExpression(errCode, errMsg, input, regex);
+    public OKBasicTypeValidationBuilder stringRegex(String errMsg, Object input, String regex) throws OKValidationException {
+        return this.stringRegex(errCode, errMsg, input, regex);
     }
 
-    public OKBasicTypeValidationBuilder stringRegularExpression(String errCode, String errMsg, Object input, String regex) throws OKValidationException {
+    public OKBasicTypeValidationBuilder stringRegex(String errCode, String errMsg, Object input, String regex) throws OKValidationException {
         if (input instanceof CharSequence) {
-            RegularExpressionValidation regularExpressionValidation = new RegularExpressionValidation(NULL_FIELD_NAME, errCode, errMsg, input, regex);
-            return this.addValidation(regularExpressionValidation);
+            StringRegexValidation stringRegexValidation = new StringRegexValidation(NULL_FIELD_NAME, errCode, errMsg, input, regex);
+            return this.addValidation(stringRegexValidation);
         } else {
             throw OKValidationException.builder()
                     .errCode("ERR_UN_SUPPORT")

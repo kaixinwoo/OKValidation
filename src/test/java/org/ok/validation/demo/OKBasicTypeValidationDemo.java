@@ -52,7 +52,7 @@ public class OKBasicTypeValidationDemo {
                     .stringMinLen("字符串长度不能小于5", input, 5)
                     .stringMaxLen("字符串长度不能大于10", input, 10)
                     .stringRangeLen("字符串长度必须在1-20之间", input, 1, 20)
-                    .stringRegularExpression("必须为纯数字", input, "^[0-9]+$")
+                    .stringRegex("必须为纯数字", input, "^[0-9]+$")
                     .equal("密码必须为123456", input, OKObjectUtil.toArray("123456"))
                     .validation();
             System.out.println(" == 验证通过 == ");

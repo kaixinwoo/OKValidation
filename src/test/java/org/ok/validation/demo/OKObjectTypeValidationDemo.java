@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * 对象字段验证
  */
-public class ObjectDemo1 {
+public class OKObjectTypeValidationDemo {
 
     public static final Customer customer = Customer.builder()
             .userId("1234567890")
@@ -33,22 +33,26 @@ public class ObjectDemo1 {
 //        new ObjectDemo1().test1();
 //        new ObjectDemo1().testCustomer();
 //        new ObjectDemo1().testBasicDataType();
-        new ObjectDemo1().testCollection();
+//        new OKObjectTypeValidationDemo().testCollection();
     }
 
     /**
-     * 基本功能
+     * 对象类型验证
      */
     public void test1() {
         try {
             OKObjectValidationBuilder.builder()
+                    // 设置统一错误码
                     .errCode("9999")
+                    // 设置输入对象
                     .input(customer)
-                    .lessThan("age", "年龄最小需要30岁", 30)
-                    .equal("gender", "性别可选参考值【0，1】", OKObjectUtil.toArray((byte)0, (byte)1))
+                    // age未customer对象的属性，要求age必须有get函数才能获取值
+                    .numberLessThan("age", "年龄最小需要30岁", 30)
+                    // 数字类型比较时需要注意使用统一数据类型，如果不确定数据类型简易转成字符串在进行比较，例如a = 1(int) b = 2(byte) a.equals(b)会认为不相等
+                    .equal("gender", "性别可选参考值【0，1】", OKObjectUtil.toArray(0, 1))
                     .notEmpty("computers", "候选人必须有电脑")
                     .stringMinLen("username", "名字必须为2个字以上", 2)
-                    .regularExpression("password", "密码必须为6位数字", "^[0-9]{6}$")
+                    .stringRegex("password", "密码必须为6位数字", "^[0-9]{6}$")
                     .validation();
             System.out.println(" == 验证通过 == ");
         } catch (OKValidationException e) {
@@ -74,39 +78,7 @@ public class ObjectDemo1 {
         }
     }
 
-    /**
-     * 基本数据类型验证
-     */
-    public void testBasicDataType() {
-        String password = "123456";
-        try {
-            OKObjectValidationBuilder.builder()
-                    .requiredNumber(null, "9999", "密码必须为数字", password)
-                    .regularExpression(null, "9999", "密码必须为6位数字", password, "^[0-9]{6}$")
-                    .validation();
-            System.out.println(" == 验证通过 == ");
-        } catch (OKValidationException e) {
-            System.out.println("code:" + e.getErrCode() + " msg:" + e.getErrMsg());
-        }
-    }
 
-    /**
-     * Map类型验证
-     */
-    public void testCollection() {
-        Map<String, String> friends = new HashMap<String, String>(){{
-            put("张三", "张三");
-            put("李四", "李四");
-        }};
-        try {
-            OKObjectValidationBuilder.builder()
-                    .input(friends)
-                    .errCode("9999")
-                    .notEmpty(null, "必须得有朋友")
-                    .validation();
-            System.out.println(" == 验证通过 == ");
-        } catch (OKValidationException e) {
-            System.out.println("code:" + e.getErrCode() + " msg:" + e.getErrMsg());
-        }
-    }
+
+
 }

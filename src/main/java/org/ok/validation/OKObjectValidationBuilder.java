@@ -133,8 +133,8 @@ public class OKObjectValidationBuilder {
      * @param compareValue
      * @return
      */
-    public OKObjectValidationBuilder lessThan(String fieldName, String errMsg, Number compareValue) {
-        return lessThan(fieldName, errCode, errMsg, input, compareValue);
+    public OKObjectValidationBuilder numberLessThan(String fieldName, String errMsg, Number compareValue) {
+        return numberLessThan(fieldName, errCode, errMsg, input, compareValue);
     }
 
     /**
@@ -146,7 +146,7 @@ public class OKObjectValidationBuilder {
      * @param compareValue
      * @return
      */
-    public OKObjectValidationBuilder lessThan(String fieldName, String errCode, String errMsg, Object input, Number compareValue) {
+    public OKObjectValidationBuilder numberLessThan(String fieldName, String errCode, String errMsg, Object input, Number compareValue) {
         NumberLessThanValidation lessThanValidation = new NumberLessThanValidation(fieldName, errCode, errMsg, input, compareValue);
         addValidation(lessThanValidation);
         return this;
@@ -159,8 +159,8 @@ public class OKObjectValidationBuilder {
      * @param compareValue
      * @return
      */
-    public OKObjectValidationBuilder greaterThan(String fieldName, String errMsg, Number compareValue) {
-        return greaterThan(fieldName, errCode, errMsg, input, compareValue);
+    public OKObjectValidationBuilder numberGreaterThan(String fieldName, String errMsg, Number compareValue) {
+        return numberGreaterThan(fieldName, errCode, errMsg, input, compareValue);
     }
 
     /**
@@ -172,7 +172,7 @@ public class OKObjectValidationBuilder {
      * @param compareValue
      * @return
      */
-    public OKObjectValidationBuilder greaterThan(String fieldName, String errCode, String errMsg, Object input, Number compareValue) {
+    public OKObjectValidationBuilder numberGreaterThan(String fieldName, String errCode, String errMsg, Object input, Number compareValue) {
         NumberGreaterThanValidation greaterThanValidation = new NumberGreaterThanValidation(fieldName, errCode, errMsg, input, compareValue);
         addValidation(greaterThanValidation);
         return this;
@@ -213,8 +213,8 @@ public class OKObjectValidationBuilder {
      * @param regex
      * @return
      */
-    public OKObjectValidationBuilder regularExpression(String fieldName, String errMsg, String regex) {
-        return regularExpression(fieldName, errCode, errMsg, input, regex);
+    public OKObjectValidationBuilder stringRegex(String fieldName, String errMsg, String regex) {
+        return stringRegex(fieldName, errCode, errMsg, input, regex);
     }
 
     /**
@@ -226,9 +226,9 @@ public class OKObjectValidationBuilder {
      * @param regex
      * @return
      */
-    public OKObjectValidationBuilder regularExpression(String fieldName, String errCode, String errMsg, Object input, String regex) {
-        RegularExpressionValidation regularExpressionValidation = new RegularExpressionValidation(fieldName, errCode, errMsg, input, regex);
-        addValidation(regularExpressionValidation);
+    public OKObjectValidationBuilder stringRegex(String fieldName, String errCode, String errMsg, Object input, String regex) {
+        StringRegexValidation stringRegexValidation = new StringRegexValidation(fieldName, errCode, errMsg, input, regex);
+        addValidation(stringRegexValidation);
         return this;
     }
 

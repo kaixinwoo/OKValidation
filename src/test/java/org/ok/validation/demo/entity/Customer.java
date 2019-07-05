@@ -22,9 +22,9 @@ public class Customer {
     // 密码
     private String password;
     // 性别
-    private byte gender;
+    private int gender;
     // 年龄
-    private short age;
+    private int age;
     // 身高
     private double height;
     // 体重

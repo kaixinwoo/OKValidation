@@ -61,7 +61,7 @@ public void stringDemo() {
                 .stringMinLen("字符串长度不能小于5", input, 5)
                 .stringMaxLen("字符串长度不能大于10", input, 10)
                 .stringRangeLen("字符串长度必须在1-20之间", input, 1, 20)
-                .stringRegularExpression("必须为纯数字", input, "^[0-9]+$")
+                .stringRegex("必须为纯数字", input, "^[0-9]+$")
                 .equal("密码必须为123456", input, OKObjectUtil.toArray("123456"))
                 .validation();
         System.out.println(" == 验证通过 == ");
@@ -83,7 +83,7 @@ public void test1() {
                 .equal("gender", "性别可选参考值【0，1】", OKObjectUtil.toArray((byte)0, (byte)1))
                 .notEmpty("computers", "候选人必须有电脑")
                 .stringMinLen("username", "名字必须为2个字以上", 2)
-                .regularExpression("password", "密码必须为6位数字", "^[0-9]{6}$")
+                .stringRegex("password", "密码必须为6位数字", "^[0-9]{6}$")
                 .validation();
         System.out.println(" == 验证通过 == ");
     } catch (OKValidationException e) {
