@@ -8,7 +8,23 @@ public class OKBasicTypeValidationDemo {
 
     public static void main(String[] args) {
 //        new OKBasicTypeValidationDemo().numberDemo();
-        new OKBasicTypeValidationDemo().numberDemo();
+//        new OKBasicTypeValidationDemo().numberDemo();
+        new OKBasicTypeValidationDemo().errCodeDemo();
+    }
+
+    // 错误码使用演示
+    public void errCodeDemo() {
+        String password = "111111";
+        try {
+            OKBasicTypeValidationBuilder.builder()
+                    .errCode("9999")
+                    // 验证可以指定错误码，如果不指定使用全局错误码“9999”
+                    .equal("7777", "密码必须为123456", password, OKObjectUtil.toArray("123456"))
+                    .validation();
+            System.out.println(" == 验证通过 == ");
+        } catch (OKValidationException e) {
+            System.out.println("验证失败 code:" + e.getErrCode() + " msg:" + e.getErrMsg());
+        }
     }
 
     public void numberDemo() {
