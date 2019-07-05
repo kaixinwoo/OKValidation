@@ -16,6 +16,8 @@ public class OKBasicTypeValidationBuilder {
     // 默认错误码
     protected String errCode;
 
+    protected static final String NULL_FIELD_NAME = null;
+
     public static OKBasicTypeValidationBuilder builder() {
         return new OKBasicTypeValidationBuilder();
     }
@@ -25,14 +27,13 @@ public class OKBasicTypeValidationBuilder {
         return this;
     }
 
-
     public OKBasicTypeValidationBuilder notNull(String errMsg, Object input) throws OKValidationException {
         return notNull(errCode, errMsg, input);
     }
 
     public OKBasicTypeValidationBuilder notNull(String errCode, String errMsg, Object input) throws OKValidationException {
         checkSupport(input);
-        NotNullValidation notEmptyValidation = new NotNullValidation(null, errCode, errMsg, input);
+        NotNullValidation notEmptyValidation = new NotNullValidation(NULL_FIELD_NAME, errCode, errMsg, input);
         return addValidation(notEmptyValidation);
     }
 
@@ -42,7 +43,7 @@ public class OKBasicTypeValidationBuilder {
 
     public OKBasicTypeValidationBuilder notEmpty(String errCode, String errMsg, Object input) throws OKValidationException {
         checkSupport(input);
-        NotEmptyValidation notEmptyValidation = new NotEmptyValidation(null, errCode, errMsg, input);
+        NotEmptyValidation notEmptyValidation = new NotEmptyValidation(NULL_FIELD_NAME, errCode, errMsg, input);
         return addValidation(notEmptyValidation);
     }
 
@@ -52,38 +53,53 @@ public class OKBasicTypeValidationBuilder {
 
     public OKBasicTypeValidationBuilder equal(String errCode, String errMsg, Object input, Object[] equalValue) throws OKValidationException {
         checkSupport(input);
-        EqualValidation equalValidation = new EqualValidation(null, errCode, errMsg, input, equalValue);
+        EqualValidation equalValidation = new EqualValidation(NULL_FIELD_NAME, errCode, errMsg, input, equalValue);
         return addValidation(equalValidation);
     }
 
-    public OKBasicTypeValidationBuilder lessThan(String errMsg, Object input, Number compareValue) throws OKValidationException {
-        return lessThan(errCode, errMsg, input, compareValue);
+    public OKBasicTypeValidationBuilder numberLessThan(String errMsg, Object input, Number compareValue) throws OKValidationException {
+        return numberLessThan(errCode, errMsg, input, compareValue);
     }
 
-    public OKBasicTypeValidationBuilder lessThan(String errCode, String errMsg, Object input, Number compareValue) throws OKValidationException {
-        checkSupport(input);
-        NumberLessThanValidation numberLessThanValidation = new NumberLessThanValidation(null, errCode, errMsg, input, compareValue);
-        return addValidation(numberLessThanValidation);
+    public OKBasicTypeValidationBuilder numberLessThan(String errCode, String errMsg, Object input, Number compareValue) throws OKValidationException {
+        if (input instanceof Number) {
+            NumberLessThanValidation numberLessThanValidation = new NumberLessThanValidation(NULL_FIELD_NAME, errCode, errMsg, input, compareValue);
+            return addValidation(numberLessThanValidation);
+        } else {
+            throw OKValidationException.builder()
+                    .errCode("ERR_UN_SUPPORT")
+                    .errMsg("不支持的数据类型 " + input.getClass());
+        }
     }
 
-    public OKBasicTypeValidationBuilder greaterThan(String errMsg, Object input, Number compareValue) throws OKValidationException {
-        return greaterThan(errCode, errMsg, input, compareValue);
+    public OKBasicTypeValidationBuilder numberGreaterThan(String errMsg, Object input, Number compareValue) throws OKValidationException {
+        return numberGreaterThan(errCode, errMsg, input, compareValue);
     }
 
-    public OKBasicTypeValidationBuilder greaterThan(String errCode, String errMsg, Object input, Number compareValue) throws OKValidationException {
-        checkSupport(input);
-        NumberGreaterThanValidation numberGreaterThanValidation = new NumberGreaterThanValidation(null, errCode, errMsg, input, compareValue);
-        return addValidation(numberGreaterThanValidation);
+    public OKBasicTypeValidationBuilder numberGreaterThan(String errCode, String errMsg, Object input, Number compareValue) throws OKValidationException {
+        if (input instanceof Number) {
+            NumberGreaterThanValidation numberGreaterThanValidation = new NumberGreaterThanValidation(NULL_FIELD_NAME, errCode, errMsg, input, compareValue);
+            return addValidation(numberGreaterThanValidation);
+        } else {
+            throw OKValidationException.builder()
+                    .errCode("ERR_UN_SUPPORT")
+                    .errMsg("不支持的数据类型 " + input.getClass());
+        }
     }
 
-    public OKBasicTypeValidationBuilder range(String errMsg, Object input, Number min, Number max) throws OKValidationException {
-        return range(errCode, errMsg, input, min, max);
+    public OKBasicTypeValidationBuilder numberRange(String errMsg, Object input, Number min, Number max) throws OKValidationException {
+        return numberRange(errCode, errMsg, input, min, max);
     }
 
-    public OKBasicTypeValidationBuilder range(String errCode, String errMsg, Object input, Number min, Number max) throws OKValidationException {
-        checkSupport(input);
-        NumberRangeValidation numberRangeValidation = new NumberRangeValidation(null, errCode, errMsg, input, min, max);
-        return this.addValidation(numberRangeValidation);
+    public OKBasicTypeValidationBuilder numberRange(String errCode, String errMsg, Object input, Number min, Number max) throws OKValidationException {
+        if (input instanceof Number) {
+            NumberRangeValidation numberRangeValidation = new NumberRangeValidation(NULL_FIELD_NAME, errCode, errMsg, input, min, max);
+            return this.addValidation(numberRangeValidation);
+        } else {
+            throw OKValidationException.builder()
+                    .errCode("ERR_UN_SUPPORT")
+                    .errMsg("不支持的数据类型 " + input.getClass());
+        }
     }
 
     public OKBasicTypeValidationBuilder regularExpression(String errMsg, Object input, String regex) throws OKValidationException {
@@ -91,13 +107,14 @@ public class OKBasicTypeValidationBuilder {
     }
 
     public OKBasicTypeValidationBuilder regularExpression(String errCode, String errMsg, Object input, String regex) throws OKValidationException {
-        if (input instanceof CharSequence == false) {
+        if (input instanceof CharSequence) {
+            RegularExpressionValidation regularExpressionValidation = new RegularExpressionValidation(NULL_FIELD_NAME, errCode, errMsg, input, regex);
+            return this.addValidation(regularExpressionValidation);
+        } else {
             throw OKValidationException.builder()
                     .errCode("ERR_UN_SUPPORT")
                     .errMsg("不支持的数据类型 " + input.getClass());
         }
-        RegularExpressionValidation regularExpressionValidation = new RegularExpressionValidation(null, errCode, errMsg, input, regex);
-        return this.addValidation(regularExpressionValidation);
     }
 
     public OKBasicTypeValidationBuilder requireNumber(String errMsg, Object input) throws OKValidationException {
@@ -106,7 +123,7 @@ public class OKBasicTypeValidationBuilder {
 
     public OKBasicTypeValidationBuilder requireNumber(String errCode, String errMsg, Object input) throws OKValidationException {
         if (input instanceof Number || input instanceof CharSequence) {
-            RequiredNumberValidation requiredNumberValidation = new RequiredNumberValidation(null, errCode, errMsg, input);
+            RequiredNumberValidation requiredNumberValidation = new RequiredNumberValidation(NULL_FIELD_NAME, errCode, errMsg, input);
             return this.addValidation(requiredNumberValidation);
         } else {
             throw OKValidationException.builder()
@@ -121,7 +138,7 @@ public class OKBasicTypeValidationBuilder {
 
     public OKBasicTypeValidationBuilder stringMinLen(String errCode, String errMsg, Object input, int compareValue) throws OKValidationException {
         if (input instanceof CharSequence) {
-            StringMinLenValidation stringMinLenValidation = new StringMinLenValidation(null, errCode, errMsg, input, compareValue);
+            StringMinLenValidation stringMinLenValidation = new StringMinLenValidation(NULL_FIELD_NAME, errCode, errMsg, input, compareValue);
             return this.addValidation(stringMinLenValidation);
         } else {
             throw OKValidationException.builder()
@@ -136,7 +153,7 @@ public class OKBasicTypeValidationBuilder {
 
     public OKBasicTypeValidationBuilder stringMaxLen(String errCode, String errMsg, Object input, int compareValue) throws OKValidationException {
         if (input instanceof CharSequence) {
-            StringMaxLenValidation stringMinLenValidation = new StringMaxLenValidation(null, errCode, errMsg, input, compareValue);
+            StringMaxLenValidation stringMinLenValidation = new StringMaxLenValidation(NULL_FIELD_NAME, errCode, errMsg, input, compareValue);
             return this.addValidation(stringMinLenValidation);
         } else {
             throw OKValidationException.builder()
@@ -151,7 +168,7 @@ public class OKBasicTypeValidationBuilder {
 
     public OKBasicTypeValidationBuilder stringRangeLen(String errCode, String errMsg, Object input, int minLen, int maxLen) throws OKValidationException {
         if (input instanceof CharSequence) {
-            StringRangeLenValidation stringRangeLenValidation = new StringRangeLenValidation(null, errCode, errMsg, input, minLen, maxLen);
+            StringRangeLenValidation stringRangeLenValidation = new StringRangeLenValidation(NULL_FIELD_NAME, errCode, errMsg, input, minLen, maxLen);
             return this.addValidation(stringRangeLenValidation);
         } else {
             throw OKValidationException.builder()
@@ -164,11 +181,9 @@ public class OKBasicTypeValidationBuilder {
         boolean isSupport = false;
         if (input instanceof Number) {
             isSupport = true;
-        }
-        if (input instanceof CharSequence) {
+        } else if (input instanceof CharSequence) {
             isSupport = true;
-        }
-        if (input instanceof Boolean) {
+        } else if (input instanceof Boolean) {
             isSupport = true;
         }
         if (isSupport == false) {

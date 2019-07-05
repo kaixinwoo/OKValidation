@@ -7,7 +7,7 @@
 开发环境 jdk1.8 
 依赖包：lombok 1.16.20
 作者邮箱：7325356@qq.com 欢迎骚扰
-功能还不完成请谨慎使用，后续改版变化可能比较大
+功能还不完整请谨慎使用，后续改版变化可能比较大
 maven:
 <dependency>
 	<groupId>org.okvalidation</groupId>

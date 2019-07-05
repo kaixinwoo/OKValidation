@@ -6,25 +6,24 @@ import org.ok.validation.exception.OKValidationException;
 public class OKBasicTypeValidationDemo {
 
     public static void main(String[] args) {
-        new OKBasicTypeValidationDemo().demo();
+        new OKBasicTypeValidationDemo().numberDemo();
     }
 
-    public void demo() {
-        String username = "王二狗";
-        int age = 25;
-        String password = "123456";
-
+    public void numberDemo() {
+        int age = 17;
         try {
             OKBasicTypeValidationBuilder.builder()
                     .errCode("9999")
                     .requireNumber("年龄必须为数字", age)
-                    .stringMinLen("密码最小6位", password, 6)
+                    .numberLessThan("18岁以下不要", age, 18)
+                    .numberGreaterThan("60岁以上不要", age, 60)
+                    .numberRange("只要25-70周岁的用户", age, 18 ,60)
                     .validation();
             System.out.println(" == 验证通过 == ");
         } catch (OKValidationException e) {
             System.out.println("验证失败 code:" + e.getErrCode() + " msg:" + e.getErrMsg());
         }
-
-
     }
+
+
 }

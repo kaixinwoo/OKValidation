@@ -1,6 +1,5 @@
 package org.ok.validation.util;
 
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
