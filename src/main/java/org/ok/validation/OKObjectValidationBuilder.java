@@ -25,11 +25,11 @@ public class OKObjectValidationBuilder {
 
     /**
      * 设置默认错误码
-     * @param defaultErrCode
+     * @param errCode
      * @return
      */
-    public OKObjectValidationBuilder defaultErrCode(String defaultErrCode) {
-        this.errCode = defaultErrCode;
+    public OKObjectValidationBuilder errCode(String errCode) {
+        this.errCode = errCode;
         return this;
     }
 

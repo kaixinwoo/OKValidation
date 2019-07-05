@@ -6,8 +6,8 @@ import java.lang.reflect.InvocationTargetException;
 
 public class NotNullValidation extends DefaultValidation {
 
-    public NotNullValidation(String fieldName, String code, String msg, Object input) {
-        super(fieldName, code, msg, input);
+    public NotNullValidation(String fieldName, String errCode, String msg, Object input) {
+        super(fieldName, errCode, msg, input);
     }
 
     @Override

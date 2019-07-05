@@ -77,7 +77,7 @@ public void stringDemo() {
 public void test1() {
     try {
         OKObjectValidationBuilder.builder()
-                .defaultErrCode("9999")
+                .errCode("9999")
                 .input(customer)
                 .lessThan("age", "年龄最小需要30岁", 30)
                 .equal("gender", "性别可选参考值【0，1】", OKObjectUtil.toArray((byte)0, (byte)1))
@@ -120,7 +120,7 @@ public void testCollection() {
     try {
         OKObjectValidationBuilder.builder()
                 .input(friends)
-                .defaultErrCode("9999")
+                .errCode("9999")
                 .notEmpty(null, "必须得有朋友")
                 .validation();
         System.out.println(" == 验证通过 == ");
