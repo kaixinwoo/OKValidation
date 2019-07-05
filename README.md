@@ -72,4 +72,15 @@ maven:
             
                                 
 ```
-
+```
+            // 对象验证示例
+            OKObjectValidationBuilder.builder()
+                    .errCode("9999")
+                    .input(customer)
+                    .notEmpty("friends", "没朋友可不行")
+                    .notEmpty("username", "必需得起个名字")
+                    .equal("age", "年龄必须在18-25岁", OKObjectUtil.toArray(18, 19, 20, 21, 22, 23, 24, 25))
+                    .numberRange("height", "体重在50-80KG", 50, 80)
+                    // ....
+                    .validation();
+```

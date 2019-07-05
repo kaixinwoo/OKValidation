@@ -1,6 +1,7 @@
 package org.ok.validation.demo;
 
 import org.ok.validation.OKBasicTypeValidationBuilder;
+import org.ok.validation.demo.custom.CustomValidation;
 import org.ok.validation.exception.OKValidationException;
 import org.ok.validation.util.OKObjectUtil;
 
