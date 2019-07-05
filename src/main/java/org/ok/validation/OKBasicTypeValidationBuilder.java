@@ -102,11 +102,11 @@ public class OKBasicTypeValidationBuilder {
         }
     }
 
-    public OKBasicTypeValidationBuilder regularExpression(String errMsg, Object input, String regex) throws OKValidationException {
-        return this.regularExpression(errCode, errMsg, input, regex);
+    public OKBasicTypeValidationBuilder stringRegularExpression(String errMsg, Object input, String regex) throws OKValidationException {
+        return this.stringRegularExpression(errCode, errMsg, input, regex);
     }
 
-    public OKBasicTypeValidationBuilder regularExpression(String errCode, String errMsg, Object input, String regex) throws OKValidationException {
+    public OKBasicTypeValidationBuilder stringRegularExpression(String errCode, String errMsg, Object input, String regex) throws OKValidationException {
         if (input instanceof CharSequence) {
             RegularExpressionValidation regularExpressionValidation = new RegularExpressionValidation(NULL_FIELD_NAME, errCode, errMsg, input, regex);
             return this.addValidation(regularExpressionValidation);
