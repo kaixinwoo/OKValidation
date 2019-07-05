@@ -9,7 +9,7 @@
 作者邮箱：7325356@qq.com 欢迎骚扰
 maven:
 <dependency>
-	<groupId>org.okvalidation</groupId>
+	<groupId>com.github.kaixinwoo</groupId>
 	<artifactId>okvalidation</artifactId>
 	<version>1.0.0</version>
 <dependency>
