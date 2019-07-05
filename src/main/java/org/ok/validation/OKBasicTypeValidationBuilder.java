@@ -84,7 +84,7 @@ public class OKBasicTypeValidationBuilder {
      * 等值验证
      * @param input 输入数据
      * @param errMsg 验证失败时返回的错误信息
-     * @param equalValue
+     * @param equalValue 比较值
      * @return 当前类对象
      * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
@@ -97,7 +97,7 @@ public class OKBasicTypeValidationBuilder {
      * @param input 输入数据
      * @param errCode 验证失败时返回的错误码
      * @param errMsg 验证失败时返回的错误信息
-     * @param equalValue
+     * @param equalValue 比较值
      * @return 当前类对象
      * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
@@ -108,10 +108,10 @@ public class OKBasicTypeValidationBuilder {
     }
 
     /**
-     * Number类型 小于验证 input < compareValue 验证失败
+     * Number类型 小于验证 input &lt; compareValue 验证失败
      * @param input 输入数据
      * @param errMsg 验证失败时返回的错误信息
-     * @param compareValue
+     * @param compareValue 比较值
      * @return 当前类对象
      * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
@@ -140,7 +140,7 @@ public class OKBasicTypeValidationBuilder {
     }
 
     /**
-     * Number类型 大于验证 input > compareValue 验证失败
+     * Number类型 大于验证 input &gt; compareValue 验证失败
      * @param input 输入数据
      * @param errMsg 验证失败时返回的错误信息
      * @param compareValue 比较值
@@ -152,7 +152,7 @@ public class OKBasicTypeValidationBuilder {
     }
 
     /**
-     * Number类型 大于验证 input > compareValue 验证失败
+     * Number类型 大于验证 input &gt; compareValue 验证失败
      * @param input 输入数据
      * @param errCode 验证失败时返回的错误码
      * @param errMsg 验证失败时返回的错误信息
@@ -172,7 +172,7 @@ public class OKBasicTypeValidationBuilder {
     }
 
     /**
-     * Number类型 范围验证 input < min or input > max 验证失败
+     * Number类型 范围验证 input &lt; min or input &gt; max 验证失败
      * @param input 输入数据
      * @param errMsg 验证失败时返回的错误信息
      * @param min 最小值
@@ -185,7 +185,7 @@ public class OKBasicTypeValidationBuilder {
     }
 
     /**
-     * Number类型 范围验证 input < min or input > max 验证失败
+     * Number类型 范围验证 input &lt; min or input &gt; max 验证失败
      * @param input 输入数据
      * @param errCode 验证失败时返回的错误码
      * @param errMsg 验证失败时返回的错误信息
@@ -268,10 +268,10 @@ public class OKBasicTypeValidationBuilder {
     }
 
     /**
-     * 字符串长度验证 length(input) < compareValue 验证失败
+     * 字符串长度验证 length(input) &lt; compareValue 验证失败
      * @param input 输入数据
      * @param errMsg 验证失败时返回的错误信息
-     * @param compareValue
+     * @param compareValue 比较值
      * @return 当前类对象
      * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
@@ -280,7 +280,7 @@ public class OKBasicTypeValidationBuilder {
     }
 
     /**
-     * 字符串长度验证 length(input) < compareValue 验证失败
+     * 字符串长度验证 length(input) &lt; compareValue 验证失败
      * @param input 输入数据
      * @param errCode 验证失败时返回的错误码
      * @param errMsg 验证失败时返回的错误信息
@@ -300,7 +300,7 @@ public class OKBasicTypeValidationBuilder {
     }
 
     /**
-     * 字符串长度验证 length(input) > compareValue 验证失败
+     * 字符串长度验证 length(input) &gt; compareValue 验证失败
      * @param input 输入数据
      * @param errMsg 验证失败时返回的错误信息
      * @param compareValue 比较直
@@ -312,7 +312,7 @@ public class OKBasicTypeValidationBuilder {
     }
 
     /**
-     * 字符串长度验证 length(input) > compareValue 验证失败
+     * 字符串长度验证 length(input) &gt; compareValue 验证失败
      * @param input 输入数据
      * @param errCode 验证失败时返回的错误码
      * @param errMsg 验证失败时返回的错误信息
@@ -332,7 +332,7 @@ public class OKBasicTypeValidationBuilder {
     }
 
     /**
-     * 字符串长度范围验证 length(input) < min or length(input) > max 验证失败
+     * 字符串长度范围验证 length(input) &lt; min or length(input) &gt; max 验证失败
      * @param input 输入数据
      * @param errMsg 验证失败时返回的错误信息
      * @param minLen 字符串的最小长度
@@ -345,7 +345,7 @@ public class OKBasicTypeValidationBuilder {
     }
 
     /**
-     * 字符串长度范围验证 length(input) < min or length(input) > max 验证失败
+     * 字符串长度范围验证 length(input) &lt; min or length(input) &gt; max 验证失败
      * @param input 输入数据
      * @param errCode 验证失败时返回的错误码
      * @param errMsg 验证失败时返回的错误信息

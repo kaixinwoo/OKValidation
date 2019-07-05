@@ -8,7 +8,7 @@ public interface OKValidation {
 
     /**
      * 验证
-     * @throws OKValidationException
+     * @throws OKValidationException 验证失败时抛出异常
      */
     void validation() throws OKValidationException;
 
