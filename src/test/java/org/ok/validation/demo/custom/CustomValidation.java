@@ -11,9 +11,13 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class CustomValidation implements OKValidation {
 
+    Customer customer;
+    public CustomValidation(Customer customer) {
+        this.customer = customer;
+    }
+
     @Override
-    public void validation(Object input) throws OKValidationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-        Customer customer = (Customer) input;
+    public void validation() throws OKValidationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         if (customer.getAge() > 60) {
             throw OKValidationException.builder()
                     .errCode("9999")

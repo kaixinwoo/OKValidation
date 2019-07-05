@@ -14,7 +14,7 @@ public class RequiredNumberValidation extends DefaultValidation {
     }
 
     @Override
-    public void validation(Object input) throws OKValidationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public void validation() throws OKValidationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         Object value = super.notEmpty();
         if (value instanceof Number) {
 

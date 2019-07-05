@@ -66,7 +66,7 @@ public class ObjectDemo1 {
                     .build();
             OKObjectValidationBuilder.builder()
                     .input(customer)
-                    .addValidation(new CustomValidation())
+                    .addValidation(new CustomValidation(customer))
                     .validation();
             System.out.println(" == 验证通过 == ");
         } catch (OKValidationException e) {
@@ -91,7 +91,7 @@ public class ObjectDemo1 {
     }
 
     /**
-     * 集合类型验证
+     * Map类型验证
      */
     public void testCollection() {
         Map<String, String> friends = new HashMap<String, String>(){{

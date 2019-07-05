@@ -11,7 +11,7 @@ public class NotNullValidation extends DefaultValidation {
     }
 
     @Override
-    public void validation(Object input) throws OKValidationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public void validation() throws OKValidationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         super.notNull();
     }
 }

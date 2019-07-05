@@ -8,13 +8,16 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * 对象验证
+ */
 public class OKObjectValidationBuilder {
 
-    private List<OKValidation> validations = new LinkedList<>();
+    protected List<OKValidation> validations = new LinkedList<>();
     // 默认错误码
-    private String errCode;
+    protected String errCode;
     // 输入值
-    private Object input;
+    protected Object input;
 
     public static OKObjectValidationBuilder builder() {
         return new OKObjectValidationBuilder();
@@ -198,7 +201,7 @@ public class OKObjectValidationBuilder {
      * @return
      */
     public OKObjectValidationBuilder numberRange(String fieldName, String errCode, String errMsg, Object input, Number min, Number max) {
-        RangeValidation rangeValidation = new RangeValidation(fieldName, errCode, errMsg, input, min, max);
+        NumberRangeValidation rangeValidation = new NumberRangeValidation(fieldName, errCode, errMsg, input, min, max);
         addValidation(rangeValidation);
         return this;
     }
@@ -337,7 +340,7 @@ public class OKObjectValidationBuilder {
         if (validations != null && validations.size() > 0) {
             for (OKValidation validation : validations) {
                 try {
-                    validation.validation(input);
+                    validation.validation();
                 } catch (OKValidationException e) {
                     throw e;
                 } catch (IllegalAccessException e) {

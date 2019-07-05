@@ -8,12 +8,11 @@ public interface OKValidation {
 
     /**
      * 验证
-     * @param input
      * @throws OKValidationException
      * @throws IllegalAccessException
      * @throws NoSuchMethodException
      * @throws InvocationTargetException
      */
-    void validation(Object input) throws OKValidationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException;
+    void validation() throws OKValidationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException;
 
 }
