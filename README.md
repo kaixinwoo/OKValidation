@@ -19,16 +19,16 @@ maven:
 ```
             // 错误码使用演示
             OKBasicTypeValidationBuilder.builder()
-                .errCode("9999")
-                // 验证可以指定错误码，如果不指定使用全局错误码“9999”
-                .equal("7777", "密码必须为123456", password, OKObjectUtil.toArray("123456"))
-                .validation();
+                                .errCode("9999")
+                                // 验证可以指定错误码，如果不指定使用全局错误码“9999”
+                                .equal(password, "77777", "密码必须为123456", OKObjectUtil.toArray("123456"))
+                                .validation();
             // 非null 和 非空验证
             OKBasicTypeValidationBuilder.builder()
-                    .errCode("9999")
-                    .notNull(password, "无效的密码")
-                    .notEmpty(password, "密码不能为空")
-                    .validation();
+                                .errCode("9999")
+                                .notNull(password, "无效的密码")
+                                .notEmpty(password, "密码不能为空")
+                                .validation();
             // 小于验证
             OKBasicTypeValidationBuilder.builder()
                                 .errCode("9999")
