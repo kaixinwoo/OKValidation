@@ -6,15 +6,15 @@ import java.lang.reflect.InvocationTargetException;
 
 public class NumberLessThanValidation extends NumberValidation {
 
-    public NumberLessThanValidation(String fieldName, String errCode, String errMsg, Object input, Number compareValue) {
-        super(fieldName, errCode, errMsg, input, compareValue, null);
+    public NumberLessThanValidation(Number input, String errCode, String errMsg, Number compareValue) {
+        super(input, errCode, errMsg, compareValue, null);
         if (compareValue == null) {
-            throw new NullPointerException("无效的数字 compareValue:null fieldName:" + fieldName);
+            throw new NullPointerException("无效的数字 compareValue:null ");
         }
     }
 
     @Override
-    public void validation() throws OKValidationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public void validation() throws OKValidationException {
         if (super.isLessThan()) {
             validationFail();
         }

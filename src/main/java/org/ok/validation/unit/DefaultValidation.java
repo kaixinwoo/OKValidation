@@ -8,16 +8,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
 
-public abstract class DefaultValidation implements OKValidation {
+public abstract class DefaultValidation<T> implements OKValidation {
 
     // 错误码
     protected String errCode;
     // 错误信息
     protected String errMsg;
-    // 字段名称，对象、map等类型有意义，基本数据类型此值无意义
-    protected String fieldName;
     // 要验证的对象 目前支持 byte、short、int、long、flat、double、string、boolean、map、collection
-    protected Object input;
+    protected T input;
 
     protected static final String EMPTY;
     public static final OKValidationException DATA_TYPE_ERR_EXCEPTION;
@@ -28,77 +26,64 @@ public abstract class DefaultValidation implements OKValidation {
                 .errMsg("不支持的数据类型");
     }
 
-    public DefaultValidation(String fieldName, String errCode, String errMsg, Object input) {
-        if (input == null) {
-            throw new NullPointerException("fieldName:" + fieldName + " input is null");
-        }
+    public DefaultValidation(T input, String errCode, String errMsg) {
         this.errCode = errCode;
         this.errMsg = errMsg;
-        this.fieldName = fieldName;
         this.input = input;
     }
 
-    /**
-     * 获取值
-     * @return
-     * @throws IllegalAccessException
-     * @throws NoSuchMethodException
-     * @throws InvocationTargetException
-     */
-    protected Object getValue() throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-        return OKObjectUtil.getValue(input, fieldName);
+    protected T getInput() {
+        return this.input;
     }
 
     /**
      * 非null验证
      * @return
-     * @throws IllegalAccessException
-     * @throws NoSuchMethodException
-     * @throws InvocationTargetException
      * @throws OKValidationException
      */
-    protected Object notNull() throws IllegalAccessException, NoSuchMethodException, InvocationTargetException, OKValidationException {
-        Object value = getValue();
-        if (value == null) {
+    protected T notNull() throws OKValidationException {
+        T input = getInput();
+        if (input == null) {
             validationFail();
         }
-        return value;
+        return input;
     }
 
     /**
      * 非空验证
      * @return
-     * @throws InvocationTargetException
-     * @throws NoSuchMethodException
      * @throws OKValidationException
-     * @throws IllegalAccessException
      */
-    protected Object notEmpty() throws InvocationTargetException, NoSuchMethodException, OKValidationException, IllegalAccessException {
-        Object value = notNull();
-        if (value instanceof CharSequence) {
-            String s = (String) value;
+    protected T notEmpty() throws OKValidationException {
+        T input = notNull();
+        if (input instanceof CharSequence) {
+            String s = (String) input;
             if (EMPTY.equals(s)) {
                 validationFail();
             }
-        } else if (value instanceof Collection) {
-            Collection collection = (Collection) value;
+        } else if (input instanceof Collection) {
+            Collection collection = (Collection) input;
             if (collection.isEmpty()) {
                 validationFail();
             }
-        } else if (value instanceof Map) {
-            Map map = (Map) value;
+        } else if (input instanceof Map) {
+            Map map = (Map) input;
             if (map.isEmpty()) {
                 validationFail();
             }
-        } else if (value.getClass().isArray()) {
-            Object[] array = (Object[]) value;
+        } else if (input.getClass().isArray()) {
+            Object[] array = (Object[]) input;
             if (array.length == 0) {
                 validationFail();
             }
         }
-        return value;
+        return input;
     }
 
+    /**
+     * 验证失败 throw OKValidationException
+     * @throws OKValidationException
+     */
     protected void validationFail() throws OKValidationException {
         throw OKValidationException.builder()
                 .errCode(errCode)
@@ -113,11 +98,4 @@ public abstract class DefaultValidation implements OKValidation {
         return errMsg;
     }
 
-    public String getFieldName() {
-        return fieldName;
-    }
-
-    public Object getInput() {
-        return input;
-    }
 }

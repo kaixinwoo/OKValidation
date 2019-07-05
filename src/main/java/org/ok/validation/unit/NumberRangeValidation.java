@@ -6,12 +6,12 @@ import java.lang.reflect.InvocationTargetException;
 
 public class NumberRangeValidation extends NumberValidation {
 
-    public NumberRangeValidation(String fieldName, String errCode, String errMsg, Object input, Number min, Number max) {
-        super(fieldName, errCode, errMsg, input, min, max);
+    public NumberRangeValidation(Number input, String errCode, String errMsg, Number min, Number max) {
+        super(input, errCode, errMsg, min, max);
     }
 
     @Override
-    public void validation() throws OKValidationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public void validation() throws OKValidationException {
         if (super.isLessThan() || super.isGreaterThan()) {
             validationFail();
         }

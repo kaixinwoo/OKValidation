@@ -4,28 +4,23 @@ import org.ok.validation.exception.OKValidationException;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class StringRangeLenValidation extends DefaultValidation {
+public class StringRangeLenValidation extends DefaultValidation<CharSequence> {
 
-    int minLen;
+    private int minLen;
 
-    int maxLen;
+    private int maxLen;
 
-    public StringRangeLenValidation(String fieldName, String errCode, String errMsg, Object input, int minLen, int maxLen) {
-        super(fieldName, errCode, errMsg, input);
+    public StringRangeLenValidation(CharSequence input, String errCode, String errMsg, int minLen, int maxLen) {
+        super(input, errCode, errMsg);
         this.minLen = minLen;
         this.maxLen = maxLen;
     }
 
     @Override
-    public void validation() throws OKValidationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-        Object value = super.notEmpty();
-        if (value instanceof CharSequence) {
-            CharSequence cs = (CharSequence) value;
-            if (cs.length() > maxLen || cs.length() < minLen) {
-                validationFail();
-            }
-        } else {
-            throw DATA_TYPE_ERR_EXCEPTION;
+    public void validation() throws OKValidationException {
+        CharSequence cs = super.getInput();
+        if (cs.length() > maxLen || cs.length() < minLen) {
+            validationFail();
         }
     }
 }

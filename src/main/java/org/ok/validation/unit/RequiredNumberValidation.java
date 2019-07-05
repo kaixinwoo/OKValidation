@@ -5,16 +5,16 @@ import org.ok.validation.exception.OKValidationException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.regex.Pattern;
 
-public class RequiredNumberValidation extends DefaultValidation {
+public class RequiredNumberValidation extends DefaultValidation<Object> {
 
     private static final String regex = "^[0-9]+$";
 
-    public RequiredNumberValidation(String fieldName, String errCode, String errMsg, Object input) {
-        super(fieldName, errCode, errMsg, input);
+    public RequiredNumberValidation(Object input, String errCode, String errMsg) {
+        super(input, errCode, errMsg);
     }
 
     @Override
-    public void validation() throws OKValidationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public void validation() throws OKValidationException {
         Object value = super.notEmpty();
         if (value instanceof Number) {
 

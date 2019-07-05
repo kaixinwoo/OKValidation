@@ -9,10 +9,7 @@ public interface OKValidation {
     /**
      * 验证
      * @throws OKValidationException
-     * @throws IllegalAccessException
-     * @throws NoSuchMethodException
-     * @throws InvocationTargetException
      */
-    void validation() throws OKValidationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException;
+    void validation() throws OKValidationException;
 
 }

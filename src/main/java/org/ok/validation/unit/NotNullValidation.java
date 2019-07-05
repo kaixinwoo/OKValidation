@@ -4,14 +4,14 @@ import org.ok.validation.exception.OKValidationException;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class NotNullValidation extends DefaultValidation {
+public class NotNullValidation extends DefaultValidation<Object> {
 
-    public NotNullValidation(String fieldName, String errCode, String msg, Object input) {
-        super(fieldName, errCode, msg, input);
+    public NotNullValidation(Object input, String errCode, String errMsg) {
+        super(input, errCode, errMsg);
     }
 
     @Override
-    public void validation() throws OKValidationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public void validation() throws OKValidationException {
         super.notNull();
     }
 }

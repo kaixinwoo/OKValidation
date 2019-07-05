@@ -13,15 +13,15 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class NumberGreaterThanValidation extends NumberValidation {
 
-    public NumberGreaterThanValidation(String fieldName, String errCode, String errMsg, Object input, Number compareValue) {
-        super(fieldName, errCode, errMsg, input, null, compareValue);
+    public NumberGreaterThanValidation(Number input, String errCode, String errMsg, Number compareValue) {
+        super(input, errCode, errMsg,null, compareValue);
         if (compareValue == null) {
-            throw new NullPointerException("无效的数字 compareValue:null fieldName:" + fieldName);
+            throw new NullPointerException("无效的数字 compareValue:null ");
         }
     }
 
     @Override
-    public void validation() throws OKValidationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public void validation() throws OKValidationException {
         if (super.isGreaterThan()) {
             validationFail();
         }
