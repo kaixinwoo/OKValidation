@@ -13,9 +13,7 @@ import java.util.List;
 public class OKBasicTypeValidationBuilder {
 
     protected List<OKValidation> validations = new LinkedList<>();
-    /**
-     * 默认错误码
-     */
+    // 默认错误码
     protected String errCode;
 
     public static OKBasicTypeValidationBuilder builder() {
@@ -24,8 +22,8 @@ public class OKBasicTypeValidationBuilder {
 
     /**
      * 设置通用错误码
-     * @param errCode
-     * @return
+     * @param errCode 输入默认错误码
+     * @return 当前类对象
      */
     public OKBasicTypeValidationBuilder errCode(String errCode) {
         this.errCode = errCode;
@@ -34,10 +32,10 @@ public class OKBasicTypeValidationBuilder {
 
     /**
      * 非null验证
-     * @param input
-     * @param errMsg
-     * @return
-     * @throws OKValidationException
+     * @param input 输入数据
+     * @param errMsg 验证失败时返回的错误码
+     * @return 当前类对象
+     * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder notNull(Object input, String errMsg) throws OKValidationException {
         return notNull(input, errCode, errMsg);
@@ -45,11 +43,11 @@ public class OKBasicTypeValidationBuilder {
 
     /**
      * 非null验证
-     * @param input
-     * @param errCode
-     * @param errMsg
-     * @return
-     * @throws OKValidationException
+     * @param input 输入数据
+     * @param errCode 验证失败时返回的错误码
+     * @param errMsg 验证失败时返回的错误信息
+     * @return 当前类对象
+     * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder notNull( Object input, String errCode, String errMsg) throws OKValidationException {
         checkSupport(input);
@@ -59,10 +57,10 @@ public class OKBasicTypeValidationBuilder {
 
     /**
      * 非空验证
-     * @param input
-     * @param errMsg
-     * @return
-     * @throws OKValidationException
+     * @param input 输入数据
+     * @param errMsg 验证失败时返回的错误信息
+     * @return 当前类对象
+     * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder notEmpty(Object input, String errMsg) throws OKValidationException {
         return notEmpty(input, errCode, errMsg);
@@ -70,11 +68,11 @@ public class OKBasicTypeValidationBuilder {
 
     /**
      * 非空验证
-     * @param input
-     * @param errCode
-     * @param errMsg
-     * @return
-     * @throws OKValidationException
+     * @param input 输入数据
+     * @param errCode 验证失败时返回的错误码
+     * @param errMsg 验证失败时返回的错误信息
+     * @return 当前类对象
+     * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder notEmpty(Object input, String errCode, String errMsg) throws OKValidationException {
         checkSupport(input);
@@ -84,11 +82,11 @@ public class OKBasicTypeValidationBuilder {
 
     /**
      * 等值验证
-     * @param input
-     * @param errMsg
+     * @param input 输入数据
+     * @param errMsg 验证失败时返回的错误信息
      * @param equalValue
-     * @return
-     * @throws OKValidationException
+     * @return 当前类对象
+     * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder equal(Object input, String errMsg, Object[] equalValue) throws OKValidationException {
         return equal(input, errCode, errMsg, equalValue);
@@ -96,12 +94,12 @@ public class OKBasicTypeValidationBuilder {
 
     /**
      * 等值验证
-     * @param input
-     * @param errCode
-     * @param errMsg
+     * @param input 输入数据
+     * @param errCode 验证失败时返回的错误码
+     * @param errMsg 验证失败时返回的错误信息
      * @param equalValue
-     * @return
-     * @throws OKValidationException
+     * @return 当前类对象
+     * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder equal(Object input, String errCode, String errMsg, Object[] equalValue) throws OKValidationException {
         checkSupport(input);
@@ -111,24 +109,24 @@ public class OKBasicTypeValidationBuilder {
 
     /**
      * Number类型 小于验证 input < compareValue 验证失败
-     * @param input
-     * @param errMsg
+     * @param input 输入数据
+     * @param errMsg 验证失败时返回的错误信息
      * @param compareValue
-     * @return
-     * @throws OKValidationException
+     * @return 当前类对象
+     * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder numberLessThan(Number input, String errMsg, Number compareValue) throws OKValidationException {
         return numberLessThan(input, errCode, errMsg, compareValue);
     }
 
     /**
-     * Number类型 小于验证 input < compareValue 验证失败
-     * @param input
-     * @param errCode
-     * @param errMsg
-     * @param compareValue
-     * @return
-     * @throws OKValidationException
+     * Number类型 小于验证 input 小于 compareValue 验证失败
+     * @param input 输入数据
+     * @param errCode 验证失败时返回的错误码
+     * @param errMsg 验证失败时返回的错误信息
+     * @param compareValue 比较值
+     * @return 当前类对象
+     * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder numberLessThan(Number input, String errCode, String errMsg, Number compareValue) throws OKValidationException {
         if (input instanceof Number) {
@@ -143,11 +141,11 @@ public class OKBasicTypeValidationBuilder {
 
     /**
      * Number类型 大于验证 input > compareValue 验证失败
-     * @param input
-     * @param errMsg
-     * @param compareValue
-     * @return
-     * @throws OKValidationException
+     * @param input 输入数据
+     * @param errMsg 验证失败时返回的错误信息
+     * @param compareValue 比较值
+     * @return 当前类对象
+     * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder numberGreaterThan(Number input, String errMsg, Number compareValue) throws OKValidationException {
         return numberGreaterThan(input, errCode, errMsg, compareValue);
@@ -155,12 +153,12 @@ public class OKBasicTypeValidationBuilder {
 
     /**
      * Number类型 大于验证 input > compareValue 验证失败
-     * @param input
-     * @param errCode
-     * @param errMsg
-     * @param compareValue
-     * @return
-     * @throws OKValidationException
+     * @param input 输入数据
+     * @param errCode 验证失败时返回的错误码
+     * @param errMsg 验证失败时返回的错误信息
+     * @param compareValue 比较值
+     * @return 当前类对象
+     * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder numberGreaterThan(Number input, String errCode, String errMsg, Number compareValue) throws OKValidationException {
         if (input instanceof Number) {
@@ -175,12 +173,12 @@ public class OKBasicTypeValidationBuilder {
 
     /**
      * Number类型 范围验证 input < min or input > max 验证失败
-     * @param input
-     * @param errMsg
-     * @param min
-     * @param max
-     * @return
-     * @throws OKValidationException
+     * @param input 输入数据
+     * @param errMsg 验证失败时返回的错误信息
+     * @param min 最小值
+     * @param max 最大值
+     * @return 当前类对象
+     * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder numberRange(Number input, String errMsg, Number min, Number max) throws OKValidationException {
         return numberRange(input, errCode, errMsg, min, max);
@@ -188,13 +186,13 @@ public class OKBasicTypeValidationBuilder {
 
     /**
      * Number类型 范围验证 input < min or input > max 验证失败
-     * @param input
-     * @param errCode
-     * @param errMsg
-     * @param min
-     * @param max
-     * @return
-     * @throws OKValidationException
+     * @param input 输入数据
+     * @param errCode 验证失败时返回的错误码
+     * @param errMsg 验证失败时返回的错误信息
+     * @param min 最小值
+     * @param max 最大值
+     * @return 当前类对象
+     * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder numberRange(Number input, String errCode, String errMsg, Number min, Number max) throws OKValidationException {
         if (input instanceof Number) {
@@ -209,11 +207,11 @@ public class OKBasicTypeValidationBuilder {
 
     /**
      * 正则表达式验证
-     * @param input
-     * @param errMsg
-     * @param regex
-     * @return
-     * @throws OKValidationException
+     * @param input 输入数据
+     * @param errMsg 验证失败时返回的错误信息
+     * @param regex 正则表达式
+     * @return 当前类对象
+     * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder stringRegex(CharSequence input, String errMsg, String regex) throws OKValidationException {
         return this.stringRegex(input, errCode, errMsg, regex);
@@ -221,12 +219,12 @@ public class OKBasicTypeValidationBuilder {
 
     /**
      * 正则表达式验证
-     * @param input
-     * @param errCode
-     * @param errMsg
-     * @param regex
-     * @return
-     * @throws OKValidationException
+     * @param input 输入数据
+     * @param errCode 验证失败时返回的错误码
+     * @param errMsg 验证失败时返回的错误信息
+     * @param regex 正则表达式
+     * @return 当前类对象
+     * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder stringRegex(CharSequence input, String errCode, String errMsg, String regex) throws OKValidationException {
         if (input instanceof CharSequence) {
@@ -241,10 +239,10 @@ public class OKBasicTypeValidationBuilder {
 
     /**
      * 必须为数字  input 匹配正则表达式 '^[0-9]+$'
-     * @param input
-     * @param errMsg
-     * @return
-     * @throws OKValidationException
+     * @param input 输入数据
+     * @param errMsg 验证失败时返回的错误信息
+     * @return 当前类对象
+     * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder requireNumber(Object input, String errMsg) throws OKValidationException {
         return this.requireNumber(input, errCode, errMsg);
@@ -252,11 +250,11 @@ public class OKBasicTypeValidationBuilder {
 
     /**
      * 必须为数字  input 匹配正则表达式 '^[0-9]+$'
-     * @param input
-     * @param errCode
-     * @param errMsg
-     * @return
-     * @throws OKValidationException
+     * @param input 输入数据
+     * @param errCode 验证失败时返回的错误码
+     * @param errMsg 验证失败时返回的错误信息
+     * @return 当前类对象
+     * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder requireNumber(Object input, String errCode, String errMsg) throws OKValidationException {
         if (input instanceof Number || input instanceof CharSequence) {
@@ -271,11 +269,11 @@ public class OKBasicTypeValidationBuilder {
 
     /**
      * 字符串长度验证 length(input) < compareValue 验证失败
-     * @param input
-     * @param errMsg
+     * @param input 输入数据
+     * @param errMsg 验证失败时返回的错误信息
      * @param compareValue
-     * @return
-     * @throws OKValidationException
+     * @return 当前类对象
+     * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder stringMinLen(CharSequence input, String errMsg, int compareValue) throws OKValidationException {
         return this.stringMinLen(input, errCode, errMsg, compareValue);
@@ -283,12 +281,12 @@ public class OKBasicTypeValidationBuilder {
 
     /**
      * 字符串长度验证 length(input) < compareValue 验证失败
-     * @param input
-     * @param errCode
-     * @param errMsg
-     * @param compareValue
-     * @return
-     * @throws OKValidationException
+     * @param input 输入数据
+     * @param errCode 验证失败时返回的错误码
+     * @param errMsg 验证失败时返回的错误信息
+     * @param compareValue 比较直
+     * @return 当前类对象
+     * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder stringMinLen(CharSequence input, String errCode, String errMsg, int compareValue) throws OKValidationException {
         if (input instanceof CharSequence) {
@@ -303,11 +301,11 @@ public class OKBasicTypeValidationBuilder {
 
     /**
      * 字符串长度验证 length(input) > compareValue 验证失败
-     * @param input
-     * @param errMsg
-     * @param compareValue
-     * @return
-     * @throws OKValidationException
+     * @param input 输入数据
+     * @param errMsg 验证失败时返回的错误信息
+     * @param compareValue 比较直
+     * @return 当前类对象
+     * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder stringMaxLen(CharSequence input, String errMsg, int compareValue) throws OKValidationException {
         return this.stringMaxLen(input, errCode, errMsg, compareValue);
@@ -315,12 +313,12 @@ public class OKBasicTypeValidationBuilder {
 
     /**
      * 字符串长度验证 length(input) > compareValue 验证失败
-     * @param input
-     * @param errCode
-     * @param errMsg
-     * @param compareValue
-     * @return
-     * @throws OKValidationException
+     * @param input 输入数据
+     * @param errCode 验证失败时返回的错误码
+     * @param errMsg 验证失败时返回的错误信息
+     * @param compareValue 比较直
+     * @return 当前类对象
+     * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder stringMaxLen(CharSequence input, String errCode, String errMsg, int compareValue) throws OKValidationException {
         if (input instanceof CharSequence) {
@@ -335,12 +333,12 @@ public class OKBasicTypeValidationBuilder {
 
     /**
      * 字符串长度范围验证 length(input) < min or length(input) > max 验证失败
-     * @param input
-     * @param errMsg
-     * @param minLen
-     * @param maxLen
-     * @return
-     * @throws OKValidationException
+     * @param input 输入数据
+     * @param errMsg 验证失败时返回的错误信息
+     * @param minLen 字符串的最小长度
+     * @param maxLen 字符串的最大长度
+     * @return 当前类对象
+     * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder stringRangeLen(CharSequence input, String errMsg, int minLen, int maxLen) throws OKValidationException {
         return this.stringRangeLen(input, errCode, errMsg, minLen, maxLen);
@@ -348,13 +346,13 @@ public class OKBasicTypeValidationBuilder {
 
     /**
      * 字符串长度范围验证 length(input) < min or length(input) > max 验证失败
-     * @param input
-     * @param errCode
-     * @param errMsg
-     * @param minLen
-     * @param maxLen
-     * @return
-     * @throws OKValidationException
+     * @param input 输入数据
+     * @param errCode 验证失败时返回的错误码
+     * @param errMsg 验证失败时返回的错误信息
+     * @param minLen 字符串的最小长度
+     * @param maxLen 字符串的最大长度
+     * @return 当前类对象
+     * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder stringRangeLen(CharSequence input, String errCode, String errMsg, int minLen, int maxLen) throws OKValidationException {
         if (input instanceof CharSequence) {

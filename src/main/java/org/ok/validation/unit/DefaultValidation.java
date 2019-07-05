@@ -38,8 +38,8 @@ public abstract class DefaultValidation<T> implements OKValidation {
 
     /**
      * 非null验证
-     * @return
-     * @throws OKValidationException
+     * @return 返回验证的输入
+     * @throws OKValidationException 验证失败返回
      */
     protected T notNull() throws OKValidationException {
         T input = getInput();
@@ -51,8 +51,8 @@ public abstract class DefaultValidation<T> implements OKValidation {
 
     /**
      * 非空验证
-     * @return
-     * @throws OKValidationException
+     * @return 返回验证值
+     * @throws OKValidationException 验证失败返回
      */
     protected T notEmpty() throws OKValidationException {
         T input = notNull();
@@ -82,7 +82,7 @@ public abstract class DefaultValidation<T> implements OKValidation {
 
     /**
      * 验证失败 throw OKValidationException
-     * @throws OKValidationException
+     * @throws OKValidationException 验证失败返回
      */
     protected void validationFail() throws OKValidationException {
         throw OKValidationException.builder()

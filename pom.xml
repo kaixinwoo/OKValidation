@@ -70,6 +70,8 @@
 							<source>1.8</source>
 							<target>1.8</target>
 							<encoding>UTF-8</encoding>
+							<aggregate>true</aggregate>
+							<docencoding>UTF-8</docencoding>
 						</configuration>
 						<executions>
 							<execution>
@@ -77,6 +79,9 @@
 								<goals>
 									<goal>jar</goal>
 								</goals>
+								<configuration>
+									<additionalparam>-Xdoclint:none</additionalparam>
+								</configuration>
 							</execution>
 						</executions>
 					</plugin>

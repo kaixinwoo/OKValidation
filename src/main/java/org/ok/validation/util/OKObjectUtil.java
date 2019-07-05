@@ -10,8 +10,8 @@ public class OKObjectUtil {
 
     /**
      * 数组转换
-     * @param input
-     * @return
+     * @param input 输入 Object类型数组
+     * @return Object类型数组
      */
     public static Object[] toArray(Object... input) {
         return input;
@@ -19,8 +19,8 @@ public class OKObjectUtil {
 
     /**
      * 数组转list
-     * @param input
-     * @return
+     * @param input 输入 Object类型数组
+     * @return 返回List
      */
     public static List toList(Object... input) {
         List result = new ArrayList();
@@ -32,8 +32,8 @@ public class OKObjectUtil {
 
     /**
      * 获取方法名
-     * @param fieldName
-     * @return
+     * @param fieldName 根据输入对象成员变量的名字生成get函数方法名
+     * @return 返回生成的方法名
      */
     public static String getMethodName(String fieldName) {
         String firstLetter = fieldName.substring(0, 1);
@@ -44,12 +44,12 @@ public class OKObjectUtil {
 
     /**
      * 获取目标值
-     * @param input
-     * @param fieldName
-     * @return
-     * @throws InvocationTargetException
-     * @throws IllegalAccessException
-     * @throws NoSuchMethodException
+     * @param input 输入对象
+     * @param fieldName input对象的成员便令名称 如果输入的式基本数据类型（Number、CharSequence、Boolean）则此输入值无意义
+     * @return 返回获取的数据
+     * @throws InvocationTargetException 反射调用异常
+     * @throws IllegalAccessException 无法访问呢异常
+     * @throws NoSuchMethodException 为找到函数异常
      */
     public static Object getValue(Object input, String fieldName) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Object result;
