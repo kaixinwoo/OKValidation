@@ -18,7 +18,7 @@ maven:
 ```
 基本数据类型验证
     public void numberDemo() {
-        int age = 17;
+        int age = 18;
         try {
             OKBasicTypeValidationBuilder.builder()
                     .errCode("9999")
@@ -26,6 +26,7 @@ maven:
                     .numberLessThan("18岁以下不要", age, 18)
                     .numberGreaterThan("60岁以上不要", age, 60)
                     .numberRange("只要25-70周岁的用户", age, 18 ,60)
+                    .equal("必须要18、19、20岁", age, OKObjectUtil.toArray(18, 19, 20))
                     .validation();
             System.out.println(" == 验证通过 == ");
         } catch (OKValidationException e) {
@@ -34,7 +35,7 @@ maven:
     }
 
     public void stringDemo() {
-        String input = "123456789a";
+        String input = "1234567";
         try {
             OKBasicTypeValidationBuilder.builder()
                     .errCode("9999")
@@ -42,6 +43,7 @@ maven:
                     .stringMaxLen("字符串长度不能大于10", input, 10)
                     .stringRangeLen("字符串长度必须在1-20之间", input, 1, 20)
                     .stringRegularExpression("必须为纯数字", input, "^[0-9]+$")
+                    .equal("密码必须为123456", input, OKObjectUtil.toArray("123456"))
                     .validation();
             System.out.println(" == 验证通过 == ");
         } catch (OKValidationException e) {
