@@ -1,15 +1,10 @@
 package org.ok.validation;
 
 import org.ok.validation.exception.OKValidationException;
-import org.ok.validation.unit.*;
 import org.ok.validation.util.OKObjectUtil;
-import sun.swing.StringUIClientPropertyKey;
 
-import javax.xml.bind.ValidationException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * 对象验证
