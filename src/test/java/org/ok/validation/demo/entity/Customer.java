@@ -31,6 +31,8 @@ public class Customer {
     private float weight;
     // 存款
     private BigDecimal deposit;
+
+    private String email;
     // 有几台电脑
     List<String> computers;
     // 朋友

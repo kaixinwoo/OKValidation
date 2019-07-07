@@ -20,6 +20,7 @@ public class OKBasicTypeValidationDemo {
         demo.stringMinLen();
         demo.stringMaxLen();
         demo.stringRangeLen();
+        demo.email();
     }
 
     // 错误码使用演示
@@ -169,5 +170,18 @@ public class OKBasicTypeValidationDemo {
             System.out.println("验证失败 code:" + e.getErrCode() + " msg:" + e.getErrMsg());
         }
 
+    }
+
+    public void email() {
+        String email = "7325356@qq.com";
+        try {
+            OKBasicTypeValidationBuilder.builder()
+                    .errCode("9999")
+                    .email(email, "无效的邮箱")
+                    .validation();
+            System.out.println(" == 验证通过 == ");
+        } catch (OKValidationException e) {
+            System.out.println("验证失败 code:" + e.getErrCode() + " msg:" + e.getErrMsg());
+        }
     }
 }

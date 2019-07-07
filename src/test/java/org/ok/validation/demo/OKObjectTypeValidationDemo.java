@@ -21,6 +21,7 @@ public class OKObjectTypeValidationDemo {
             .age((short)100)
             .height(175)
             .weight(160)
+            .email("123@123.com")
             .deposit(new BigDecimal("1875"))
             .computers(OKObjectUtil.toList("thinkpad", "macbook"))
             .build();
@@ -41,6 +42,7 @@ public class OKObjectTypeValidationDemo {
         demo.stringMaxLen();
         demo.stringRangeLen();
         demo.custom();
+        demo.email();
     }
 
     public void demo() {
@@ -215,5 +217,18 @@ public class OKObjectTypeValidationDemo {
             System.out.println("验证失败  code:" + e.getErrCode() + " msg:" + e.getErrMsg());
         }
 
+    }
+
+    public void email() {
+        try {
+            OKObjectValidationBuilder.builder()
+                    .errCode("9999")
+                    .input(customer)
+                    .email("email", "无效的邮箱")
+                    .validation();
+            System.out.println("== 验证通过 ==");
+        } catch (OKValidationException e) {
+            System.out.println("验证失败  code:" + e.getErrCode() + " msg:" + e.getErrMsg());
+        }
     }
 }
