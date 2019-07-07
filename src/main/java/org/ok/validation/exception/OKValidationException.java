@@ -1,9 +1,12 @@
 package org.ok.validation.exception;
 
-public class OKValidationException extends Exception {
+import java.io.Serializable;
 
+public class OKValidationException extends Exception implements Serializable {
+
+    // 错误码
     private String errCode;
-
+    // 错误信息
     private String errMsg;
 
     public OKValidationException() {
