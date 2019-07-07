@@ -289,14 +289,8 @@ public class OKBasicTypeValidationBuilder {
      * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder stringMinLen(CharSequence input, String errCode, String errMsg, int compareValue) throws OKValidationException {
-        if (input instanceof CharSequence) {
-            StringMinLenValidation stringMinLenValidation = new StringMinLenValidation(input, errCode, errMsg, compareValue);
-            return this.addValidation(stringMinLenValidation);
-        } else {
-            throw OKValidationException.builder()
-                    .errCode("ERR_UN_SUPPORT")
-                    .errMsg("不支持的数据类型 " + input.getClass());
-        }
+        StringMinLenValidation stringMinLenValidation = new StringMinLenValidation(input, errCode, errMsg, compareValue);
+        return this.addValidation(stringMinLenValidation);
     }
 
     /**
@@ -321,14 +315,8 @@ public class OKBasicTypeValidationBuilder {
      * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder stringMaxLen(CharSequence input, String errCode, String errMsg, int compareValue) throws OKValidationException {
-        if (input instanceof CharSequence) {
-            StringMaxLenValidation stringMinLenValidation = new StringMaxLenValidation(input, errCode, errMsg, compareValue);
-            return this.addValidation(stringMinLenValidation);
-        } else {
-            throw OKValidationException.builder()
-                    .errCode("ERR_UN_SUPPORT")
-                    .errMsg("不支持的数据类型 " + input.getClass());
-        }
+        StringMaxLenValidation stringMinLenValidation = new StringMaxLenValidation(input, errCode, errMsg, compareValue);
+        return this.addValidation(stringMinLenValidation);
     }
 
     /**
@@ -355,14 +343,30 @@ public class OKBasicTypeValidationBuilder {
      * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder stringRangeLen(CharSequence input, String errCode, String errMsg, int minLen, int maxLen) throws OKValidationException {
-        if (input instanceof CharSequence) {
-            StringRangeLenValidation stringRangeLenValidation = new StringRangeLenValidation(input, errCode, errMsg, minLen, maxLen);
-            return this.addValidation(stringRangeLenValidation);
-        } else {
-            throw OKValidationException.builder()
-                    .errCode("ERR_UN_SUPPORT")
-                    .errMsg("不支持的数据类型 " + input.getClass());
-        }
+        StringRangeLenValidation stringRangeLenValidation = new StringRangeLenValidation(input, errCode, errMsg, minLen, maxLen);
+        return this.addValidation(stringRangeLenValidation);
+    }
+
+    /**
+     * Email验证
+     * @param input 输入数据
+     * @param errMsg 验证失败时返回的错误信息
+     * @return 当前类对象
+     */
+    public OKBasicTypeValidationBuilder email(CharSequence input, String errMsg) {
+        return this.email(input, errCode, errMsg);
+    }
+
+    /**
+     * Email验证
+     * @param input 输入数据
+     * @param errCode  验证失败时返回的错误码
+     * @param errMsg 验证失败时返回的错误信息
+     * @return 当前类对象
+     */
+    public OKBasicTypeValidationBuilder email(CharSequence input, String errCode, String errMsg) {
+        EmailValidation emailValidation = new EmailValidation(input, errCode, errMsg);
+        return this.addValidation(emailValidation);
     }
 
     protected void checkSupport(Object input) throws OKValidationException {

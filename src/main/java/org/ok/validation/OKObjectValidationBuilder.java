@@ -429,6 +429,37 @@ public class OKObjectValidationBuilder {
         return this;
     }
 
+    /**
+     * 邮箱验证
+     * @param fieldName 对戏实例变量名称，用于反射get函数获取输入值进行验证
+     * @param errMsg 验证失败时返回的错误信息 OKValidationException::errMsg
+     * @return 当前对象
+     * @throws OKValidationException 输入不支持的数据类型时抛出异常
+     */
+    public OKObjectValidationBuilder email(String fieldName, String errMsg) throws OKValidationException {
+        return email(fieldName, errCode, errMsg);
+    }
+
+    /**
+     * 邮箱验证
+     * @param fieldName 对戏实例变量名称，用于反射get函数获取输入值进行验证
+     * @param errCode 验证失败时返回的错误信息 OKValidationException::errCode
+     * @param errMsg 验证失败时返回的错误信息 OKValidationException::errMsg
+     * @return 当前对象
+     * @throws OKValidationException 输入不支持的数据类型时抛出异常
+     */
+    public OKObjectValidationBuilder email(String fieldName, String errCode, String errMsg) throws OKValidationException {
+        Object value = getValue(fieldName);
+        if (value instanceof CharSequence == false) {
+            throw OKValidationException.builder()
+                    .errCode("ERR_UN_SUPPORT")
+                    .errMsg("fieldName:" + fieldName + " 必须为CharSequence类型的数据");
+        }
+        CharSequence cs = (CharSequence) value;
+        basicTypeValidationBuilder.email(cs, errCode, errMsg);
+        return this;
+    }
+
     public void validation() throws OKValidationException {
         basicTypeValidationBuilder.validation();
     }
