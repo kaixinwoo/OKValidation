@@ -18,7 +18,7 @@ public class StringRangeLenValidation extends DefaultValidation<CharSequence> {
 
     @Override
     public void validation() throws OKValidationException {
-        CharSequence cs = super.getInput();
+        CharSequence cs = super.notEmpty();
         if (cs.length() > maxLen || cs.length() < minLen) {
             validationFail();
         }
