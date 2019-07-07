@@ -57,8 +57,8 @@ public abstract class DefaultValidation<T> implements OKValidation {
     protected T notEmpty() throws OKValidationException {
         T input = notNull();
         if (input instanceof CharSequence) {
-            String s = (String) input;
-            if (EMPTY.equals(s)) {
+            CharSequence s = (CharSequence) input;
+            if (s.length() == 0) {
                 validationFail();
             }
         } else if (input instanceof Collection) {
