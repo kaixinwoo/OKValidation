@@ -22,6 +22,8 @@ public class OKObjectTypeValidationDemo {
             .height(175)
             .weight(160)
             .email("123@123.com")
+            .mobile("18600000000")
+            .ip("127.0.0.1")
             .deposit(new BigDecimal("1875"))
             .computers(OKObjectUtil.toList("thinkpad", "macbook"))
             .build();
@@ -43,6 +45,8 @@ public class OKObjectTypeValidationDemo {
         demo.stringRangeLen();
         demo.custom();
         demo.email();
+        demo.mobile();
+        demo.ipv4();
     }
 
     public void demo() {
@@ -225,6 +229,32 @@ public class OKObjectTypeValidationDemo {
                     .errCode("9999")
                     .input(customer)
                     .email("email", "无效的邮箱")
+                    .validation();
+            System.out.println("== 验证通过 ==");
+        } catch (OKValidationException e) {
+            System.out.println("验证失败  code:" + e.getErrCode() + " msg:" + e.getErrMsg());
+        }
+    }
+
+    public void mobile() {
+        try {
+            OKObjectValidationBuilder.builder()
+                    .errCode("9999")
+                    .input(customer)
+                    .mobile("mobile", "无效的手机号")
+                    .validation();
+            System.out.println("== 验证通过 ==");
+        } catch (OKValidationException e) {
+            System.out.println("验证失败  code:" + e.getErrCode() + " msg:" + e.getErrMsg());
+        }
+    }
+
+    public void ipv4() {
+        try {
+            OKObjectValidationBuilder.builder()
+                    .errCode("9999")
+                    .input(customer)
+                    .ipv4("ip", "无效的ip地址")
                     .validation();
             System.out.println("== 验证通过 ==");
         } catch (OKValidationException e) {

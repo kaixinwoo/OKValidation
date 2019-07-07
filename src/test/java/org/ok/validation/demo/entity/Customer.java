@@ -31,8 +31,12 @@ public class Customer {
     private float weight;
     // 存款
     private BigDecimal deposit;
-
+    // 邮箱
     private String email;
+    // 手机号
+    private String mobile;
+    // IP地址
+    private String ip;
     // 有几台电脑
     List<String> computers;
     // 朋友

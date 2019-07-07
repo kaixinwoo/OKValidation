@@ -3,7 +3,6 @@ package org.ok.validation;
 import org.ok.validation.exception.OKValidationException;
 import org.ok.validation.unit.*;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -371,6 +370,50 @@ public class OKBasicTypeValidationBuilder {
     public OKBasicTypeValidationBuilder email(CharSequence input, String errCode, String errMsg) {
         EmailValidation emailValidation = new EmailValidation(input, errCode, errMsg);
         return this.addValidation(emailValidation);
+    }
+
+    /**
+     * 手机号验证
+     * @param input 输入数据
+     * @param errMsg 验证失败时返回的错误信息
+     * @return 当前类对象
+     */
+    public OKBasicTypeValidationBuilder mobile(CharSequence input, String errMsg) {
+        return this.mobile(input, errCode, errMsg);
+    }
+
+    /**
+     * 手机号验证
+     * @param input 输入数据
+     * @param errCode 验证失败时返回的错误码
+     * @param errMsg 验证失败时返回的错误信息
+     * @return 当前类对象
+     */
+    public OKBasicTypeValidationBuilder mobile(CharSequence input, String errCode, String errMsg) {
+        MobileValidation mobileValidation = new MobileValidation(input, errCode, errMsg);
+        return this.addValidation(mobileValidation);
+    }
+
+    /**
+     * 是否为ipv4地址验证
+     * @param input 输入数据
+     * @param errMsg 验证失败时返回的错误信息
+     * @return 当前类对象
+     */
+    public OKBasicTypeValidationBuilder ipv4(CharSequence input, String errMsg) {
+        return this.ipv4(input, errCode, errMsg);
+    }
+
+    /**
+     * 是否为ipv4地址验证
+     * @param input 输入数据
+     * @param errCode 验证失败时返回的错误码
+     * @param errMsg 验证失败时返回的错误信息
+     * @return 当前类对象
+     */
+    public OKBasicTypeValidationBuilder ipv4(CharSequence input, String errCode, String errMsg) {
+        IPv4Validation iPv4Validation = new IPv4Validation(input, errCode, errMsg);
+        return this.addValidation(iPv4Validation);
     }
 
     protected void checkSupport(Object input) throws OKValidationException {

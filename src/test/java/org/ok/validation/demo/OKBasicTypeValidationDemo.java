@@ -21,6 +21,8 @@ public class OKBasicTypeValidationDemo {
         demo.stringMaxLen();
         demo.stringRangeLen();
         demo.email();
+        demo.mobile();
+        demo.ipv4();
     }
 
     // 错误码使用演示
@@ -178,6 +180,32 @@ public class OKBasicTypeValidationDemo {
             OKBasicTypeValidationBuilder.builder()
                     .errCode("9999")
                     .email(email, "无效的邮箱")
+                    .validation();
+            System.out.println(" == 验证通过 == ");
+        } catch (OKValidationException e) {
+            System.out.println("验证失败 code:" + e.getErrCode() + " msg:" + e.getErrMsg());
+        }
+    }
+
+    public void mobile() {
+        String mobile = "18600000000";
+        try {
+            OKBasicTypeValidationBuilder.builder()
+                    .errCode("9999")
+                    .mobile(mobile, "无效的手机号")
+                    .validation();
+            System.out.println(" == 验证通过 == ");
+        } catch (OKValidationException e) {
+            System.out.println("验证失败 code:" + e.getErrCode() + " msg:" + e.getErrMsg());
+        }
+    }
+
+    public void ipv4() {
+        String ip = "127.0.0.1";
+        try {
+            OKBasicTypeValidationBuilder.builder()
+                    .errCode("9999")
+                    .ipv4(ip, "无效的ip地址")
                     .validation();
             System.out.println(" == 验证通过 == ");
         } catch (OKValidationException e) {

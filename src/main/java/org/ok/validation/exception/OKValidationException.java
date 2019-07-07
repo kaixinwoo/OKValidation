@@ -8,6 +8,8 @@ public class OKValidationException extends Exception implements Serializable {
     private String errCode;
     // 错误信息
     private String errMsg;
+    // 错误数据信息
+    private Object errValue;
 
     public OKValidationException() {
     }
@@ -26,12 +28,21 @@ public class OKValidationException extends Exception implements Serializable {
         return this;
     }
 
+    public OKValidationException errValue(Object errValue) {
+        this.errValue = errValue;
+        return this;
+    }
+
     public String getErrCode() {
         return errCode;
     }
 
     public String getErrMsg() {
         return errMsg;
+    }
+
+    public Object getErrValue() {
+        return errValue;
     }
 
     @Override

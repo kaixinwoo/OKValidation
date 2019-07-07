@@ -48,6 +48,16 @@ public class OKObjectValidationBuilder {
         }
     }
 
+    protected Object getValueNotNull(String fieldNme, String errCode, String errMsg) throws OKValidationException {
+        Object value = getValue(fieldNme);
+        if (value == null) {
+            throw OKValidationException.builder()
+                    .errCode(errCode)
+                    .errMsg(errMsg);
+        }
+        return value;
+    }
+
     private OKObjectValidationBuilder() {
         basicTypeValidationBuilder = new OKBasicTypeValidationBuilder();
     }
@@ -185,7 +195,7 @@ public class OKObjectValidationBuilder {
      * @throws OKValidationException 输入不支持的数据类型时抛出异常
      */
     public OKObjectValidationBuilder numberLessThan(String fieldName, String errCode, String errMsg, Number compareValue) throws OKValidationException {
-        Object value = getValue(fieldName);
+        Object value = getValueNotNull(fieldName, errCode, errMsg);
         if (value instanceof Number == false) {
             throw OKValidationException.builder()
                     .errCode("ERR_UN_SUPPORT")
@@ -218,7 +228,7 @@ public class OKObjectValidationBuilder {
      * @throws OKValidationException 输入不支持的数据类型时抛出异常
      */
     public OKObjectValidationBuilder numberGreaterThan(String fieldName, String errCode, String errMsg, Number compareValue) throws OKValidationException {
-        Object value = getValue(fieldName);
+        Object value = getValueNotNull(fieldName, errCode, errMsg);
         if (value instanceof Number == false) {
             throw OKValidationException.builder()
                     .errCode("ERR_UN_SUPPORT")
@@ -253,7 +263,7 @@ public class OKObjectValidationBuilder {
      * @throws OKValidationException 输入不支持的数据类型时抛出异常
      */
     public OKObjectValidationBuilder numberRange(String fieldName, String errCode, String errMsg, Number min, Number max) throws OKValidationException {
-        Object value = getValue(fieldName);
+        Object value = getValueNotNull(fieldName, errCode, errMsg);
         if (value instanceof Number == false) {
             throw OKValidationException.builder()
                     .errCode("ERR_UN_SUPPORT")
@@ -286,7 +296,7 @@ public class OKObjectValidationBuilder {
      * @throws OKValidationException 输入不支持的数据类型时抛出异常
      */
     public OKObjectValidationBuilder stringRegex(String fieldName, String errCode, String errMsg, String regex) throws OKValidationException {
-        Object value = getValue(fieldName);
+        Object value = getValueNotNull(fieldName, errCode, errMsg);
         if (value instanceof CharSequence == false) {
             throw OKValidationException.builder()
                     .errCode("ERR_UN_SUPPORT")
@@ -317,7 +327,7 @@ public class OKObjectValidationBuilder {
      * @throws OKValidationException 输入不支持的数据类型时抛出异常
      */
     public OKObjectValidationBuilder requiredNumber(String fieldName, String errCode, String errMsg) throws OKValidationException {
-        Object value = getValue(fieldName);
+        Object value = getValueNotNull(fieldName, errCode, errMsg);
         if (value instanceof CharSequence == false) {
             throw OKValidationException.builder()
                     .errCode("ERR_UN_SUPPORT")
@@ -350,7 +360,7 @@ public class OKObjectValidationBuilder {
      * @throws OKValidationException 输入不支持的数据类型时抛出异常
      */
     public OKObjectValidationBuilder stringMinLen(String fieldName, String errCode, String errMsg, int compareValue) throws OKValidationException {
-        Object value = getValue(fieldName);
+        Object value = getValueNotNull(fieldName, errCode, errMsg);
         if (value instanceof CharSequence == false) {
             throw OKValidationException.builder()
                     .errCode("ERR_UN_SUPPORT")
@@ -383,7 +393,7 @@ public class OKObjectValidationBuilder {
      * @throws OKValidationException 输入不支持的数据类型时抛出异常
      */
     public OKObjectValidationBuilder stringMaxLen(String fieldName, String errCode, String errMsg, int compareValue) throws OKValidationException {
-        Object value = getValue(fieldName);
+        Object value = getValueNotNull(fieldName, errCode, errMsg);
         if (value instanceof CharSequence == false) {
             throw OKValidationException.builder()
                     .errCode("ERR_UN_SUPPORT")
@@ -418,7 +428,7 @@ public class OKObjectValidationBuilder {
      * @throws OKValidationException 输入不支持的数据类型时抛出异常
      */
     public OKObjectValidationBuilder stringRangeLen(String fieldName, String errCode, String errMsg, int minLen, int maxLen) throws OKValidationException {
-        Object value = getValue(fieldName);
+        Object value = getValueNotNull(fieldName, errCode, errMsg);
         if (value instanceof CharSequence == false) {
             throw OKValidationException.builder()
                     .errCode("ERR_UN_SUPPORT")
@@ -449,7 +459,7 @@ public class OKObjectValidationBuilder {
      * @throws OKValidationException 输入不支持的数据类型时抛出异常
      */
     public OKObjectValidationBuilder email(String fieldName, String errCode, String errMsg) throws OKValidationException {
-        Object value = getValue(fieldName);
+        Object value = getValueNotNull(fieldName, errCode, errMsg);
         if (value instanceof CharSequence == false) {
             throw OKValidationException.builder()
                     .errCode("ERR_UN_SUPPORT")
@@ -458,6 +468,75 @@ public class OKObjectValidationBuilder {
         CharSequence cs = (CharSequence) value;
         basicTypeValidationBuilder.email(cs, errCode, errMsg);
         return this;
+    }
+
+    /**
+     * 手机号（中国）验证
+     * @param fieldName 对戏实例变量名称，用于反射get函数获取输入值进行验证
+     * @param errMsg 验证失败时返回的错误信息 OKValidationException::errMsg
+     * @return 当前对象
+     * @throws OKValidationException 输入不支持的数据类型时抛出异常
+     */
+    public OKObjectValidationBuilder mobile(String fieldName, String errMsg) throws OKValidationException {
+        return this.mobile(fieldName, errCode, errMsg);
+    }
+
+    /**
+     * 手机号（中国）验证
+     * @param fieldName 对戏实例变量名称，用于反射get函数获取输入值进行验证
+     * @param errCode 验证失败时返回的错误信息 OKValidationException::errCode
+     * @param errMsg 验证失败时返回的错误信息 OKValidationException::errMsg
+     * @return 当前对象
+     * @throws OKValidationException 输入不支持的数据类型时抛出异常
+     */
+    public OKObjectValidationBuilder mobile(String fieldName, String errCode ,String errMsg) throws OKValidationException {
+        Object value = getValueNotNull(fieldName, errCode, errMsg);
+        if (value instanceof CharSequence == false) {
+            throw OKValidationException.builder()
+                    .errCode("ERR_UN_SUPPORT")
+                    .errMsg("fieldName:" + fieldName + " 必须为CharSequence类型的数据");
+        }
+        CharSequence cs = (CharSequence) value;
+        basicTypeValidationBuilder.mobile(cs, errCode, errMsg);
+        return this;
+    }
+
+    /**
+     * ipv4地址验证
+     * @param fieldName 对戏实例变量名称，用于反射get函数获取输入值进行验证
+     * @param errMsg 验证失败时返回的错误信息 OKValidationException::errMsg
+     * @return 当前对象
+     * @throws OKValidationException 输入不支持的数据类型时抛出异常
+     */
+    public OKObjectValidationBuilder ipv4(String fieldName, String errMsg) throws OKValidationException {
+        return this.ipv4(fieldName, errCode, errMsg);
+    }
+
+    /**
+     * ipv4地址验证
+     * @param fieldName 对戏实例变量名称，用于反射get函数获取输入值进行验证
+     * @param errCode 验证失败时返回的错误信息 OKValidationException::errCode
+     * @param errMsg 验证失败时返回的错误信息 OKValidationException::errMsg
+     * @return 当前对象
+     * @throws OKValidationException 输入不支持的数据类型时抛出异常
+     */
+    public OKObjectValidationBuilder ipv4(String fieldName, String errCode ,String errMsg) throws OKValidationException {
+        Object value = getValueNotNull(fieldName, errCode, errMsg);
+        if (value instanceof CharSequence == false) {
+            throw OKValidationException.builder()
+                    .errCode("ERR_UN_SUPPORT")
+                    .errMsg("fieldName:" + fieldName + " 必须为CharSequence类型的数据");
+        }
+        CharSequence cs = (CharSequence) value;
+        basicTypeValidationBuilder.ipv4(cs, errCode, errMsg);
+        return this;
+    }
+
+    protected void builderFail(String errCode, String errMsg, Object errValue) throws OKValidationException {
+        throw OKValidationException.builder()
+                .errCode(errCode)
+                .errMsg(errMsg)
+                .errValue(errValue);
     }
 
     public void validation() throws OKValidationException {
