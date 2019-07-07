@@ -23,10 +23,18 @@ public class EqualValidation extends DefaultValidation<Object>  {
         Object value = super.notEmpty();
         boolean isEqual = false;
         for (Object item : equalValue) {
-            if (item.getClass().equals(value.getClass()) == false) {
-                throw OKValidationException.builder()
-                        .errCode("ERR_DATA_TYPE")
-                        .errMsg("数据类型不匹配 inputClass:" + value.getClass() + " equalClass:" + item.getClass());
+            if (item instanceof CharSequence) {
+                String itemString = value.toString();
+                String equalString = item.toString();
+                if (itemString.equals(equalString)) {
+                    isEqual = true;
+                    break;
+                }
+            } else {
+                if (value.equals(equalValue)) {
+                    isEqual = true;
+                    break;
+                }
             }
             if (value.equals(item)) {
                 isEqual = true;

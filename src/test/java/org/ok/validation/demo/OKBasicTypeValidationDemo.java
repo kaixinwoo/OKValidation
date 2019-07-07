@@ -1,8 +1,6 @@
 package org.ok.validation.demo;
 
-import javafx.beans.binding.StringBinding;
 import org.ok.validation.OKBasicTypeValidationBuilder;
-import org.ok.validation.demo.custom.CustomValidation;
 import org.ok.validation.exception.OKValidationException;
 import org.ok.validation.util.OKObjectUtil;
 
@@ -11,34 +9,17 @@ public class OKBasicTypeValidationDemo {
     public static void main(String[] args) {
         OKBasicTypeValidationDemo demo = new OKBasicTypeValidationDemo();
 
-        demo.stringBuilder();
-//        demo.errCodeDemo();
-//        demo.notNull();
-//        demo.equal();
-//        demo.numberLessThan();
-//        demo.numberGreaterThan();
-//        demo.numberRange();
-//        demo.stringRegex();
-//        demo.requireNumber();
-//        demo.stringMinLen();
-//        demo.stringMaxLen();
-//        demo.stringRangeLen();
-    }
-
-    public void stringBuilder() {
-        StringBuilder password = new StringBuilder();
-        password.append("123456");
-        try {
-            OKBasicTypeValidationBuilder.builder()
-                    .errCode("9999")
-                    .notNull(password, "无效的密码")
-                    .notEmpty(password, "密码不能为空")
-                    .equal(password, "密码必须等于123456", OKObjectUtil.toArray("123456"))
-                    .validation();
-            System.out.println(" == 验证通过 == ");
-        } catch (OKValidationException e) {
-            System.out.println("验证失败 code:" + e.getErrCode() + " msg:" + e.getErrMsg());
-        }
+        demo.errCodeDemo();
+        demo.notNull();
+        demo.equal();
+        demo.numberLessThan();
+        demo.numberGreaterThan();
+        demo.numberRange();
+        demo.stringRegex();
+        demo.requireNumber();
+        demo.stringMinLen();
+        demo.stringMaxLen();
+        demo.stringRangeLen();
     }
 
     // 错误码使用演示
