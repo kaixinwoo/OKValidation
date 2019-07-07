@@ -1,7 +1,8 @@
 # OKValidation
 
 ```
-简单验证框架
+轻量级验证框架
+已发布到maven中央仓库，可直接引用
 ```
 ```
 开发环境 jdk1.8 
@@ -11,7 +12,7 @@ maven:
 <dependency>
 	<groupId>com.github.kaixinwoo</groupId>
 	<artifactId>okvalidation</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0</version>
 <dependency>
 ```
 
