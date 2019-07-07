@@ -24,7 +24,7 @@ public class OKBasicTypeValidationDemo {
 
     // 错误码使用演示
     public void errCodeDemo() {
-        String password = "111111";
+        String password = "123456";
         try {
             OKBasicTypeValidationBuilder.builder()
                     .errCode("9999")
@@ -67,7 +67,7 @@ public class OKBasicTypeValidationDemo {
     }
 
     public void numberLessThan() {
-        long age = 16;
+        long age = 18;
         try {
             OKBasicTypeValidationBuilder.builder()
                     .errCode("9999")
@@ -80,7 +80,7 @@ public class OKBasicTypeValidationDemo {
     }
 
     public void numberGreaterThan() {
-        long age = 61;
+        long age = 60;
         try {
             OKBasicTypeValidationBuilder.builder()
                     .errCode("9999")
@@ -93,7 +93,7 @@ public class OKBasicTypeValidationDemo {
     }
 
     public void numberRange() {
-        long age = 71;
+        long age = 18;
         try {
             OKBasicTypeValidationBuilder.builder()
                     .errCode("9999")
@@ -110,7 +110,7 @@ public class OKBasicTypeValidationDemo {
         try {
             OKBasicTypeValidationBuilder.builder()
                     .errCode("9999")
-                    .stringRegex(mobile, "无效的手机号", "^1[0-9]{01}$")
+                    .stringRegex(mobile, "无效的手机号", "^1[0-9]{10}$")
                     .validation();
             System.out.println(" == 验证通过 == ");
         } catch (OKValidationException e) {
@@ -119,7 +119,7 @@ public class OKBasicTypeValidationDemo {
     }
 
     public void requireNumber() {
-        String mobile = "1234567890a";
+        String mobile = "12345678901";
         try {
             OKBasicTypeValidationBuilder.builder()
                     .errCode("9999")
@@ -132,7 +132,7 @@ public class OKBasicTypeValidationDemo {
     }
 
     public void stringMinLen() {
-        String name = "王";
+        String name = "王二狗";
         try {
             OKBasicTypeValidationBuilder.builder()
                     .errCode("9999")
@@ -145,7 +145,7 @@ public class OKBasicTypeValidationDemo {
     }
 
     public void stringMaxLen() {
-        String name = "王二狗啦啦啦";
+        String name = "王二狗啦";
         try {
             OKBasicTypeValidationBuilder.builder()
                     .errCode("9999")
@@ -158,7 +158,7 @@ public class OKBasicTypeValidationDemo {
     }
 
     public void stringRangeLen() {
-        String name = "王二狗啦啦啦";
+        String name = "王二狗啦";
         try {
             OKBasicTypeValidationBuilder.builder()
                     .errCode("9999")
