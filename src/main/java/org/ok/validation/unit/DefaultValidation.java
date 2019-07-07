@@ -17,10 +17,8 @@ public abstract class DefaultValidation<T> implements OKValidation {
     // 要验证的对象 目前支持 byte、short、int、long、flat、double、string、boolean、map、collection
     protected T input;
 
-    protected static final String EMPTY;
     public static final OKValidationException DATA_TYPE_ERR_EXCEPTION;
     static {
-        EMPTY = "";
         DATA_TYPE_ERR_EXCEPTION = OKValidationException.builder()
                 .errCode("ERR_DATA_TYPE")
                 .errMsg("不支持的数据类型");
