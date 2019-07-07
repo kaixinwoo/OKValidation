@@ -257,8 +257,12 @@ public class OKBasicTypeValidationBuilder {
      * @throws OKValidationException 输入的数据类型不支持会抛出异常
      */
     public OKBasicTypeValidationBuilder requireNumber(Object input, String errCode, String errMsg) throws OKValidationException {
-        if (input instanceof Number || input instanceof CharSequence) {
-            RequiredNumberValidation requiredNumberValidation = new RequiredNumberValidation(input, errCode, errMsg);
+        if (input instanceof Number) {
+            Number number = (Number) input;
+            RequiredNumberValidation requiredNumberValidation = new RequiredNumberValidation(number.toString(), errCode, errMsg);
+            return this.addValidation(requiredNumberValidation);
+        } else if (input instanceof CharSequence) {
+            RequiredNumberValidation requiredNumberValidation = new RequiredNumberValidation((CharSequence) input, errCode, errMsg);
             return this.addValidation(requiredNumberValidation);
         } else {
             throw OKValidationException.builder()
