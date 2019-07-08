@@ -16,6 +16,8 @@ public abstract class DefaultValidation<T> implements OKValidation {
     protected String errMsg;
     // 要验证的对象 目前支持 byte、short、int、long、flat、double、string、boolean、map、collection
     protected T input;
+    // 验证的字段可能为null,
+    protected boolean mayBeNull = false;
 
     public static final OKValidationException DATA_TYPE_ERR_EXCEPTION;
     static {

@@ -334,7 +334,7 @@ public class OKObjectValidationBuilder {
                     .errMsg("fieldName:" + fieldName + " 必须为CharSequence或Number类型的数据");
         }
         CharSequence cs = (CharSequence) value;
-        basicTypeValidationBuilder.stringRegex(cs, errCode, errMsg);
+        basicTypeValidationBuilder.requireNumber(cs, errCode, errMsg);
         return this;
     }
 
