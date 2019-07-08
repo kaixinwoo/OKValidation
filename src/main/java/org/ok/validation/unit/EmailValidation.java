@@ -1,5 +1,7 @@
 package org.ok.validation.unit;
 
+import org.ok.validation.exception.OKValidationException;
+
 /**
  * 邮箱验证
  */

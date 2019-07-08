@@ -10,8 +10,15 @@ public class NotEmptyValidation extends DefaultValidation<Object> {
         super(input, errCode, errMsg);
     }
 
-    @Override
-    public void validation() throws OKValidationException {
-        super.notEmpty();
+    protected void doValidation(Object input) throws OKValidationException {
+        if (input == null) {
+            validationFail();
+        }
+        if (input instanceof CharSequence) {
+            CharSequence cs = (CharSequence) input;
+            if (cs.length() == 0) {
+                validationFail();
+            }
+        }
     }
 }

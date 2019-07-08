@@ -21,7 +21,7 @@ public class NumberGreaterThanValidation extends NumberValidation {
     }
 
     @Override
-    public void validation() throws OKValidationException {
+    protected void doValidation(Number input) throws OKValidationException {
         if (super.isGreaterThan()) {
             validationFail();
         }

@@ -14,9 +14,8 @@ public abstract class RegexValidation extends DefaultValidation<CharSequence> {
     }
 
     @Override
-    public void validation() throws OKValidationException {
-        CharSequence cs = super.notEmpty();
-        boolean bool = Pattern.matches(getRegex(), cs);
+    protected void doValidation(CharSequence input) throws OKValidationException {
+        boolean bool = Pattern.matches(getRegex(), input);
         if (bool == false) {
             validationFail();
         }

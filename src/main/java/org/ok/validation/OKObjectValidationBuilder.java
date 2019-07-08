@@ -1,5 +1,6 @@
 package org.ok.validation;
 
+import org.ok.validation.builder.object.OKObjectValidation;
 import org.ok.validation.exception.OKValidationException;
 import org.ok.validation.util.OKObjectUtil;
 
@@ -8,7 +9,9 @@ import java.util.Collection;
 
 /**
  * 对象验证
+ * @see OKObjectValidation
  */
+@Deprecated
 public class OKObjectValidationBuilder {
 
     // 通用错误码

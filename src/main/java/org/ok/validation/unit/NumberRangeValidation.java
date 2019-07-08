@@ -11,7 +11,7 @@ public class NumberRangeValidation extends NumberValidation {
     }
 
     @Override
-    public void validation() throws OKValidationException {
+    protected void doValidation(Number input) throws OKValidationException {
         if (super.isLessThan() || super.isGreaterThan()) {
             validationFail();
         }

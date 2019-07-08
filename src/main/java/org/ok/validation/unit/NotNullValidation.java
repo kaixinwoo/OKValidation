@@ -12,6 +12,14 @@ public class NotNullValidation extends DefaultValidation<Object> {
 
     @Override
     public void validation() throws OKValidationException {
-        super.notNull();
+        Object input = super.getInput();
+        if (input == null) {
+            validationFail();
+        }
+    }
+
+    @Override
+    protected void doValidation(Object input) throws OKValidationException {
+
     }
 }

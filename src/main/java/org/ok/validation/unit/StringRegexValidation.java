@@ -18,7 +18,7 @@ public class StringRegexValidation extends DefaultValidation<CharSequence> {
     }
 
     @Override
-    public void validation() throws OKValidationException {
+    protected void doValidation(CharSequence input) throws OKValidationException {
         CharSequence cs = super.getInput();
         boolean bool = Pattern.matches(this.regex, cs);
         if (bool == false) {

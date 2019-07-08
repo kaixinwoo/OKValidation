@@ -1,5 +1,6 @@
 package org.ok.validation.unit;
 
+
 /**
  * 手机号验证（中国）
  */
@@ -10,6 +11,7 @@ public class MobileValidation extends RegexValidation {
     public MobileValidation(CharSequence input, String errCode, String errMsg) {
         super(input, errCode, errMsg);
     }
+
 
     @Override
     protected String getRegex() {

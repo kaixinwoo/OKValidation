@@ -12,16 +12,25 @@ import java.util.List;
 
 public class OKObjectFieldWrapper {
 
-
-    // 输入的对象
+    /**
+     * 输入的对象
+     */
     protected Object input;
-    // 字段名称，实例变量名称，要求实例变量必须有get函数
+    /**
+     * 字段名称，实例变量名称，要求实例变量必须有get函数
+     */
     protected String fieldName;
-    // 错误码
+    /**
+     * 错误码
+     */
     protected String errCode;
-    // 错误信息
+    /**
+     * 错误信息
+     */
     protected String errMsg;
-    // 验证规则列表
+    /**
+     * 验证规则列表
+     */
     protected List<OKValidation> validations = null;
 
     private OKObjectFieldWrapper(Object input, String fieldName, String errCode, String errMsg) {
@@ -45,7 +54,8 @@ public class OKObjectFieldWrapper {
     }
 
     public static OKObjectFieldWrapper builder(Object input, String fieldName, String errCode, String errMsg) {
-        return new OKObjectFieldWrapper(input, fieldName, errCode, errMsg);
+        OKObjectFieldWrapper wrapper = new OKObjectFieldWrapper(input, fieldName, errCode, errMsg);
+        return wrapper;
     }
 
     protected Object getValue() throws OKValidationException {
@@ -68,6 +78,15 @@ public class OKObjectFieldWrapper {
                     .errCode(errCode)
                     .errMsg(errMsg);
         }
+    }
+
+    public OKObjectFieldWrapper mayBeNull(boolean bool) {
+        if (validations != null) {
+            validations.forEach(item -> {
+                item.mayBeNull(bool);
+            });
+        }
+        return this;
     }
 
     public OKObjectFieldWrapper notNull() {

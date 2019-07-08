@@ -18,7 +18,7 @@ public class OKObjectValidationDemo {
     public static final Customer customer = Customer.builder()
             .userId("1234567890")
             .username("王二狗")
-            .password("00000000")
+            .password(null)
             .gender((byte)1)
             .age((short)100)
             .height(175)
@@ -37,6 +37,7 @@ public class OKObjectValidationDemo {
                     .errCode("9999")
                     .errMsg("无效的参数")
                     .wrapper(OKObjectFieldWrapper.builder("password")
+                            .mayBeNull(true)
                             .notEmpty()
                             .stringRangeLen(6,12))
                     .validation();

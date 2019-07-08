@@ -2,6 +2,8 @@ package org.ok.validation.unit;
 
 import org.ok.validation.exception.OKValidationException;
 
+import java.util.regex.Pattern;
+
 /**
  * 等值验证，
  * 要求输入项的值和equalValue进行比较，如果有值相等验证通过，否则验证失败
@@ -19,24 +21,23 @@ public class EqualValidation extends DefaultValidation<Object>  {
     }
 
     @Override
-    public void validation() throws OKValidationException {
-        Object value = super.notEmpty();
+    protected void doValidation(Object input) throws OKValidationException {
         boolean isEqual = false;
         for (Object item : equalValue) {
             if (item instanceof CharSequence) {
-                String itemString = value.toString();
+                String itemString = input.toString();
                 String equalString = item.toString();
                 if (itemString.equals(equalString)) {
                     isEqual = true;
                     break;
                 }
             } else {
-                if (value.equals(equalValue)) {
+                if (input.equals(equalValue)) {
                     isEqual = true;
                     break;
                 }
             }
-            if (value.equals(item)) {
+            if (input.equals(item)) {
                 isEqual = true;
                 break;
             }

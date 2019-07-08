@@ -14,7 +14,7 @@ public class StringMaxLenValidation extends DefaultValidation<CharSequence> {
     }
 
     @Override
-    public void validation() throws OKValidationException {
+    protected void doValidation(CharSequence input) throws OKValidationException {
         CharSequence cs = super.notEmpty();
         if (cs.length() > compareValue) {
             validationFail();

@@ -2,7 +2,6 @@ package org.ok.validation.unit;
 
 import org.ok.validation.exception.OKValidationException;
 import java.lang.Number;
-import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;

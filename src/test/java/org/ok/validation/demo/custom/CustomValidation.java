@@ -23,4 +23,9 @@ public class CustomValidation implements OKValidation {
                     .errMsg("年龄不能超过60岁");
         }
     }
+
+    @Override
+    public void mayBeNull(boolean bool) {
+
+    }
 }
