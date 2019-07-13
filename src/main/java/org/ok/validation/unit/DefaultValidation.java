@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
 
-public abstract class DefaultValidation<T> implements OKValidation, Serializable {
+public abstract class DefaultValidation<T> implements OKValidation<T>, Serializable {
 
     /**
      * 错误码
@@ -26,7 +26,7 @@ public abstract class DefaultValidation<T> implements OKValidation, Serializable
      * mayBeNull = false 要求验证的数据不能为null且必须符合验证规则
      * mayBeNull = true 要求验证验证数据可以为null，为null时验证通过，如果不为null必须符合验证规则
      */
-    protected boolean mayBeNull = false;
+    public boolean mayBeNull = false;
 
     public static final OKValidationException DATA_TYPE_ERR_EXCEPTION;
 
@@ -65,6 +65,11 @@ public abstract class DefaultValidation<T> implements OKValidation, Serializable
      * 规则验证
      */
     protected abstract void doValidation(T input) throws OKValidationException;
+
+    @Override
+    public void input(T t) {
+        this.input = t;
+    }
 
     /**
      * 获取输入值

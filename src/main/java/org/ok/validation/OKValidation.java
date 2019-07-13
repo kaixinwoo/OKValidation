@@ -2,7 +2,7 @@ package org.ok.validation;
 
 import org.ok.validation.exception.OKValidationException;
 
-public interface OKValidation {
+public interface OKValidation<T> {
 
     /**
      * 验证
@@ -19,4 +19,10 @@ public interface OKValidation {
      * @param bool 输入数据是否可以为null
      */
     void mayBeNull(boolean bool);
+
+    /**
+     * 设置输入数据
+     * @param t 泛化的输入数据
+     */
+    void input(T t);
 }

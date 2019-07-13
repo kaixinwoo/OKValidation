@@ -14,7 +14,6 @@ import java.math.BigDecimal;
 public class OKObjectTypeValidationDemo {
 
     public static final Customer customer = Customer.builder()
-            .userId("1234567890")
             .username("王二狗")
             .password("1234567890111")
             .gender((byte)1)

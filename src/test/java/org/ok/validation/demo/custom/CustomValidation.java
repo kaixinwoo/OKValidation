@@ -28,4 +28,9 @@ public class CustomValidation implements OKValidation {
     public void mayBeNull(boolean bool) {
 
     }
+
+    @Override
+    public void input(Object o) {
+
+    }
 }

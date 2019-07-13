@@ -4,6 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.ok.validation.annotation.NotEmpty;
+import org.ok.validation.annotation.NotNull;
+import org.ok.validation.annotation.Regex;
+import org.ok.validation.annotation.RequireNumber;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -13,13 +17,12 @@ import java.util.Map;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Customer {
-
-    // 用户ID
-    private String userId;
+public class Customer extends AbstractCustomer {
     // 姓名
     private String username;
     // 密码
+    @NotEmpty(errCode = "7777", errMsg = "无效的密码")
+    @RequireNumber(errCode = "7777", errMsg = "密码必须为数字")
     private String password;
     // 性别
     private int gender;

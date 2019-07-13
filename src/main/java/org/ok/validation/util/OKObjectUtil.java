@@ -18,6 +18,15 @@ public class OKObjectUtil {
     }
 
     /**
+     * 字符串数组转换
+     * @param input 字符串数组
+     * @return 字符串数组
+     */
+    public static String[] toStringArray(String... input) {
+        return input;
+    }
+
+    /**
      * 数组转list
      * @param input 输入 Object类型数组
      * @return 返回List
