@@ -10,21 +10,10 @@ import java.lang.annotation.*;
 @Documented
 public @interface Regex {
 
-    /**
-     *
-     * @return
-     */
     String errCode() default "";
 
-    /**
-     *
-     * @return
-     */
     String errMsg() default "";
 
-    /**
-     * 输入的正则表达式
-     * @return
-     */
+    // 输入的正则表达式
     String regex() default "";
 }
